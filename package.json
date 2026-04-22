@@ -10,12 +10,14 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
+    "start": "node ./dist/server/entry.mjs",
     "astro": "astro"
   },
   "dependencies": {
     "astro": "^5.7.8",
     "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "^4.3.0",
+    "@astrojs/node": "^9.4.0",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.3.0",
     "sharp": "^0.33.5",

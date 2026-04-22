@@ -52,7 +52,16 @@ Recommended deploy flow:
 
 - connect this repo to Railway
 - auto-deploy from `main`
+- use the included `nixpacks.toml`
 - bind the custom domain `blog.browserman.run`
+
+Railway settings:
+
+- runtime: Nixpacks
+- install command: `npm install`
+- build command: `npm run build`
+- start command: `npm run start`
+- root directory: repository root
 
 ## Why separate from the main repo
 
