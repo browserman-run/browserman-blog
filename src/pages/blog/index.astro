@@ -1,103 +1,97 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PostCard from '../../components/PostCard.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
 const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
-<!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={`Posts — ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
-    <style>
-      .page-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-        gap: 1rem;
-        margin-bottom: 2rem;
-      }
-      .page-head h1 {
-        margin-bottom: 0.4rem;
-      }
-      .page-head p {
-        margin: 0;
-        color: rgb(var(--gray));
-      }
-      .posts {
-        display: grid;
-        gap: 1rem;
-        padding: 0;
-        list-style: none;
-      }
-      .posts li {
-        background: white;
-        border: 1px solid rgba(var(--gray), 0.18);
-        border-radius: 1rem;
-        padding: 1.2rem;
-        box-shadow: 0 12px 30px rgba(var(--gray), 0.08);
-      }
-      .title {
-        margin: 0 0 0.4rem;
-        color: rgb(var(--black));
-      }
-      .meta {
-        margin: 0 0 0.8rem;
-        color: rgb(var(--gray));
-        font-size: 0.92rem;
-      }
-      .posts a {
-        text-decoration: none;
-      }
-      .posts a:hover .title {
-        color: var(--accent);
-      }
-      .empty-state {
-        border: 1px dashed rgba(var(--gray), 0.28);
-        border-radius: 1rem;
-        padding: 1.25rem;
-        color: rgb(var(--gray));
-      }
-      @media (max-width: 720px) {
-        .page-head {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-      }
-    </style>
+    <BaseHead title={`Writing — ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
   </head>
+
   <body>
     <Header />
+
     <main>
-      <section class="page-head">
-        <div>
-          <h1>Posts</h1>
-          <p>All writing published on the BrowserMan blog.</p>
-        </div>
+      <section class="archive-head">
+        <p class="archive-head__kicker mono">Archive</p>
+        <h1 class="archive-head__title">All writing from BrowserMan.</h1>
       </section>
 
-      {posts.length ? (
-        <ul class="posts">
-          {posts.map((post) => (
-            <li>
-              <a href={`/blog/${post.id}/`}>
-                <h2 class="title">{post.data.title}</h2>
-                <p class="meta"><FormattedDate date={post.data.pubDate} /></p>
-                <p>{post.data.description}</p>
-              </a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <div class="empty-state">No posts yet. Add markdown files under src/content/blog/ to publish.</div>
-      )}
+      <section class="archive-feed">
+        {posts.length ? (
+          posts.map((post, index) => <PostCard post={post} featured={index === 0} />)
+        ) : (
+          <p class="archive-empty">Nothing published yet.</p>
+        )}
+      </section>
     </main>
+
     <Footer />
   </body>
 </html>
+
+<style>
+  .archive-head,
+  .archive-feed {
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .archive-head {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .archive-head__kicker {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber-deep);
+    margin: 0 0 1rem;
+  }
+
+  .archive-head__title {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .archive-feed {
+    padding-top: 2.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .archive-empty {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--ink-3);
+    padding: 3rem 0;
+  }
+
+  @media (max-width: 720px) {
+    .archive-head,
+    .archive-feed {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .archive-head {
+      padding-top: 3rem;
+      padding-bottom: 1.5rem;
+    }
+  }
+</style>

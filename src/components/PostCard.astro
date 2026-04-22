@@ -1,0 +1,105 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  featured?: boolean;
+}
+
+const { post, featured = false } = Astro.props;
+const { title, description, pubDate } = post.data;
+
+const dateFmt = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric', month: 'short', day: 'numeric'
+}).format(pubDate);
+
+const words = post.body?.split(/\s+/).length ?? 0;
+const readMins = Math.max(1, Math.round(words / 220));
+---
+
+<article class={`post-card ${featured ? 'is-featured' : ''}`}>
+  <a href={`/blog/${post.id}/`} class="post-card__link">
+    <div class="post-card__meta">
+      <time datetime={pubDate.toISOString()}>{dateFmt}</time>
+      <span aria-hidden="true">·</span>
+      <span>{readMins} min read</span>
+    </div>
+
+    <h3 class="post-card__title">{title}</h3>
+    <p class="post-card__desc">{description}</p>
+    <span class="post-card__more">
+      Read <span aria-hidden="true">→</span>
+    </span>
+  </a>
+</article>
+
+<style>
+  .post-card {
+    border-top: 1px solid var(--rule);
+    padding: 2rem 0;
+  }
+
+  .post-card:last-child { border-bottom: 1px solid var(--rule); }
+
+  .post-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .post-card__meta {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 0.8rem;
+  }
+
+  .post-card__title {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ink-1);
+    margin: 0 0 0.5rem;
+    transition: color 150ms var(--ease);
+  }
+
+  .post-card__desc {
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 60ch;
+    margin: 0 0 0.8rem;
+  }
+
+  .post-card__more {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--amber-deep);
+  }
+
+  .post-card__link:hover .post-card__title { color: var(--amber-deep); }
+
+  .is-featured {
+    border-top: none;
+    padding-top: 0;
+    padding-bottom: 2.5rem;
+  }
+
+  .is-featured .post-card__title {
+    font-size: clamp(2rem, 4.4vw, 3.2rem);
+    font-style: italic;
+  }
+
+  .is-featured .post-card__desc {
+    font-size: 1.1rem;
+    max-width: 62ch;
+  }
+</style>

@@ -1,0 +1,102 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { PRODUCT_URL } from '../consts';
+
+const title = 'About';
+const description = 'BrowserMan builds browsers that work for you — an agent-first Chromium with delegated approval, a skills ecosystem, and onboarding designed for humans, not DevTools users.';
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+
+  <body>
+    <Header />
+
+    <main>
+      <article class="about">
+        <header class="about__head">
+          <p class="mono about__kicker">About · BrowserMan</p>
+          <h1 class="about__title">Browsers that work <em>for</em> you.</h1>
+        </header>
+
+        <div class="about__body prose">
+          <p>
+            BrowserMan is an agent-first browser: a Chromium build where an AI
+            agent can open tabs, click, fill forms, and take the repetitive
+            work off your plate. The goal is plain — you describe what you
+            want, the browser does it.
+          </p>
+
+          <h2>What this blog is for</h2>
+          <p>
+            This is where the team writes about what we're building, and why.
+            Not press releases. Working notes.
+          </p>
+
+          <ul>
+            <li>Product updates and launch notes</li>
+            <li>Design decisions — onboarding, approval UX, dashboard shapes</li>
+            <li>Practical writing on browser automation</li>
+            <li>Longer-form thinking that doesn't belong inside the app itself</li>
+          </ul>
+
+          <h2>Why separate from the product</h2>
+          <p>
+            The main BrowserMan repo stays focused on product code: the
+            extension, the onboarding flow, the dashboard, delegated approvals,
+            the browser runtime. The blog has a different job — a clean
+            writing flow, lightweight deploys, a structure that's easy to
+            maintain as a content site.
+          </p>
+
+          <h2>Follow along</h2>
+          <p>
+            New posts land in the <a href="/">writing feed</a> and the
+            <a href="/rss.xml">RSS feed</a>. The product itself lives at
+            <a href={PRODUCT_URL}>browserman.run</a>.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .about {
+    max-width: var(--prose);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 2rem;
+  }
+
+  .about__head { margin-bottom: 2.5rem; }
+
+  .about__kicker {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber-deep);
+    margin: 0 0 1.2rem;
+  }
+
+  .about__title {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5.4vw, 3.8rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink-1);
+    margin: 0;
+  }
+
+  .about__title em { font-style: italic; color: var(--amber-deep); }
+
+  @media (max-width: 720px) {
+    .about { padding: 2.5rem 1rem 2rem; }
+  }
+</style>

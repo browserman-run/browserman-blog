@@ -1,47 +1,137 @@
 ---
-const today = new Date();
+const year = new Date().getFullYear();
 ---
 
-<footer>
-  <div class="footer-inner">
-    <p>© {today.getFullYear()} BrowserMan. Product notes, launch writing, and browser automation ideas.</p>
-    <div class="footer-links">
-      <a href="https://browserman.run">browserman.run</a>
-      <a href="https://github.com/browserman-run/browserman-blog">GitHub</a>
-      <a href="/rss.xml">RSS</a>
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__col">
+      <div class="site-footer__mark" aria-hidden="true">B</div>
+      <p class="site-footer__tag">Browsers that work for you.</p>
     </div>
+
+    <nav class="site-footer__nav" aria-label="Footer">
+      <div class="site-footer__group">
+        <h4 class="mono">Product</h4>
+        <a href="https://browserman.run">browserman.run</a>
+        <a href="https://browserman.run/dashboard">Dashboard</a>
+      </div>
+      <div class="site-footer__group">
+        <h4 class="mono">Writing</h4>
+        <a href="/">Latest</a>
+        <a href="/rss.xml">RSS feed</a>
+      </div>
+      <div class="site-footer__group">
+        <h4 class="mono">Elsewhere</h4>
+        <a href="https://github.com/browserman-run">GitHub</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="site-footer__fineprint">
+    <span>© {year} BrowserMan</span>
+    <span aria-hidden="true">·</span>
+    <span>Published from Astro</span>
   </div>
 </footer>
+
 <style>
-  footer {
-    padding: 2.5rem 1rem 4rem;
-    color: rgb(var(--gray));
+  .site-footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 6rem;
+    padding: 3rem 1.5rem 2rem;
+    background: var(--paper-2);
   }
-  .footer-inner {
-    max-width: 1100px;
+
+  .site-footer__inner {
+    max-width: var(--wide);
     margin: 0 auto;
-    padding-top: 1.25rem;
-    border-top: 1px solid rgba(var(--gray), 0.18);
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
   }
-  p {
+
+  .site-footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .site-footer__mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--ink-1);
+  }
+
+  .site-footer__tag {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-2);
     margin: 0;
-    font-size: 0.95rem;
   }
-  .footer-links {
+
+  .site-footer__nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .site-footer__group {
     display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.45rem;
   }
-  .footer-links a {
+
+  .site-footer__group h4 {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 500;
+    margin: 0 0 0.3rem 0;
+  }
+
+  .site-footer__group a {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--ink-2);
     text-decoration: none;
-    color: rgb(var(--gray));
   }
-  .footer-links a:hover {
-    color: rgb(var(--black));
+
+  .site-footer__group a:hover { color: var(--amber-deep); }
+
+  .site-footer__fineprint {
+    max-width: var(--wide);
+    margin: 2.5rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  @media (max-width: 720px) {
+    .site-footer__inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .site-footer__nav {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .site-footer__nav { grid-template-columns: 1fr 1fr; }
   }
 </style>

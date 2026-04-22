@@ -1,232 +1,138 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Footer from '../components/Footer.astro';
+import PostCard from '../components/PostCard.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
-const featured = posts[0];
-const recent = posts.slice(1, 4);
+
+const [featured, ...rest] = posts;
 ---
 
-<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style>
-      .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-        gap: 1.5rem;
-        align-items: start;
-        padding: 1.25rem 0 0.5rem;
-      }
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.55rem;
-        font-size: 0.75rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: rgb(var(--gray));
-        margin-bottom: 1rem;
-      }
-      .eyebrow::before {
-        content: '';
-        width: 0.55rem;
-        height: 0.55rem;
-        border-radius: 999px;
-        background: var(--accent);
-      }
-      .hero-copy {
-        max-width: 40rem;
-      }
-      .hero-title {
-        font-size: clamp(2.3rem, 5.2vw, 3.6rem);
-        line-height: 1.02;
-        letter-spacing: -0.03em;
-        margin-bottom: 0.75rem;
-        max-width: 11ch;
-      }
-      .hero-sub {
-        max-width: 34rem;
-        color: rgb(var(--gray-dark));
-        font-size: 1rem;
-        line-height: 1.65;
-      }
-      .hero-card {
-        background: white;
-        border: 1px solid rgba(var(--gray), 0.18);
-        border-radius: 1rem;
-        padding: 1.1rem 1.15rem;
-        box-shadow: 0 12px 30px rgba(var(--gray), 0.08);
-        align-self: start;
-      }
-      .hero-card h2 {
-        font-size: 1.15rem;
-        margin-bottom: 0.65rem;
-      }
-      .hero-card p {
-        font-size: 0.98rem;
-        margin: 0;
-        color: rgb(var(--gray-dark));
-      }
-      .hero-links {
-        display: flex;
-        gap: 0.8rem;
-        flex-wrap: wrap;
-        margin-top: 1rem;
-      }
-      .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 999px;
-        padding: 0.75rem 1rem;
-        text-decoration: none;
-        font-size: 0.95rem;
-        font-weight: 600;
-      }
-      .button.primary {
-        background: var(--accent);
-        color: white;
-      }
-      .button.secondary {
-        border: 1px solid rgba(var(--gray), 0.22);
-        color: rgb(var(--black));
-        background: white;
-      }
-      .section-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-        gap: 1rem;
-        margin: 2.5rem 0 1rem;
-      }
-      .section-head h2 {
-        margin: 0;
-      }
-      .muted {
-        color: rgb(var(--gray));
-      }
-      .featured,
-      .recent-grid article {
-        background: white;
-        border: 1px solid rgba(var(--gray), 0.18);
-        border-radius: 1rem;
-        padding: 1.25rem;
-        box-shadow: 0 12px 30px rgba(var(--gray), 0.08);
-      }
-      .featured-title,
-      .recent-title {
-        text-decoration: none;
-        color: rgb(var(--black));
-      }
-      .featured-title h3,
-      .recent-title h3 {
-        margin-bottom: 0.4rem;
-      }
-      .meta {
-        font-size: 0.92rem;
-        color: rgb(var(--gray));
-        margin-bottom: 0.8rem;
-      }
-      .recent-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1rem;
-      }
-      .empty-state {
-        border: 1px dashed rgba(var(--gray), 0.28);
-        border-radius: 1rem;
-        padding: 1.25rem;
-        color: rgb(var(--gray));
-      }
-      @media (max-width: 900px) {
-        .hero,
-        .recent-grid {
-          grid-template-columns: 1fr;
-        }
-        .hero-title {
-          max-width: 100%;
-        }
-      }
-    </style>
   </head>
+
   <body>
     <Header />
+
     <main>
       <section class="hero">
-        <div class="hero-copy">
-          <div class="eyebrow">BrowserMan writing</div>
-          <h1 class="hero-title">BrowserMan notes, product updates, and browser automation writing.</h1>
-          <p class="hero-sub">
-            A quieter place for launch notes, design decisions, onboarding changes, and practical lessons
-            from building browser automation for real AI agents.
+        <div class="hero__inner">
+          <p class="hero__kicker mono">BrowserMan · Writing</p>
+          <h1 class="hero__title">
+            Notes on <em>browsers that work for you.</em>
+          </h1>
+          <p class="hero__lede">
+            Product updates, design decisions, and practical writing on browser
+            automation — from the team building BrowserMan.
           </p>
-          <div class="hero-links">
-            <a class="button primary" href="/blog">Read posts</a>
-            <a class="button secondary" href="https://browserman.run">Visit BrowserMan</a>
-          </div>
         </div>
-        <aside class="hero-card">
-          <h2>What belongs here</h2>
-          <p>
-            Product updates. Design rationale. Setup changes. Experiments. Hard-won lessons from making
-            browser access legible, scoped, and actually useful for AI agents.
-          </p>
-        </aside>
       </section>
 
-      <section>
-        <div class="section-head">
-          <div>
-            <h2>Latest post</h2>
-            <p class="muted">Start with the newest writing from the BrowserMan team.</p>
-          </div>
+      <section class="feed">
+        <div class="feed__head">
+          <h2 class="mono feed__label">Latest</h2>
+          <span class="feed__count mono">{posts.length} {posts.length === 1 ? 'post' : 'posts'}</span>
         </div>
-        {featured ? (
-          <article class="featured">
-            <div class="meta"><FormattedDate date={featured.data.pubDate} /></div>
-            <a class="featured-title" href={`/blog/${featured.id}/`}>
-              <h3>{featured.data.title}</h3>
-            </a>
-            <p>{featured.data.description}</p>
-          </article>
-        ) : (
-          <div class="empty-state">No posts yet. The blog skeleton is live and ready for the first article.</div>
-        )}
-      </section>
 
-      <section>
-        <div class="section-head">
-          <div>
-            <h2>Recent posts</h2>
-            <p class="muted">A lightweight archive for future product and writing cadence.</p>
-          </div>
-          <a href="/blog">View all posts</a>
-        </div>
-        {recent.length ? (
-          <div class="recent-grid">
-            {recent.map((post) => (
-              <article>
-                <div class="meta"><FormattedDate date={post.data.pubDate} /></div>
-                <a class="recent-title" href={`/blog/${post.id}/`}>
-                  <h3>{post.data.title}</h3>
-                </a>
-                <p>{post.data.description}</p>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <div class="empty-state">Add more posts under src/content/blog/ to populate the archive.</div>
+        {featured && <PostCard post={featured} featured />}
+        {rest.map((post) => <PostCard post={post} />)}
+
+        {posts.length === 0 && (
+          <p class="feed__empty">
+            Nothing published yet. The first post is on its way.
+          </p>
         )}
       </section>
     </main>
+
     <Footer />
   </body>
 </html>
+
+<style>
+  .hero {
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding: 5rem 1.5rem 3rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero__inner { max-width: 60ch; }
+
+  .hero__kicker {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber-deep);
+    margin: 0 0 1.2rem;
+  }
+
+  .hero__title {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: var(--ink-1);
+    margin: 0 0 1.2rem;
+  }
+
+  .hero__title em {
+    font-style: italic;
+    color: var(--ink-2);
+  }
+
+  .hero__lede {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.35rem;
+    line-height: 1.45;
+    color: var(--ink-2);
+    margin: 0;
+  }
+
+  .feed {
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .feed__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+  }
+
+  .feed__label,
+  .feed__count {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .feed__empty {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--ink-3);
+    text-align: center;
+    padding: 4rem 0;
+  }
+
+  @media (max-width: 720px) {
+    .hero { padding: 3rem 1rem 2rem; }
+    .feed { padding: 2rem 1rem 3rem; }
+  }
+</style>
