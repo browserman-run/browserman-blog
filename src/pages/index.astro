@@ -26,11 +26,10 @@ const [featured, ...rest] = posts;
         <div class="hero__inner">
           <p class="hero__kicker mono">BrowserMan · Writing</p>
           <h1 class="hero__title">
-            Notes on <em>browsers that work for you.</em>
+            Working notes from building <em>browser automation people can actually use.</em>
           </h1>
           <p class="hero__lede">
-            Product updates, design decisions, and practical writing on browser
-            automation — from the team building BrowserMan.
+            Product updates, onboarding decisions, launch notes, and practical writing from the team behind BrowserMan.
           </p>
         </div>
       </section>
@@ -60,11 +59,11 @@ const [featured, ...rest] = posts;
   .hero {
     max-width: var(--wide);
     margin: 0 auto;
-    padding: 5rem 1.5rem 3rem;
+    padding: 4.25rem 1.5rem 2.75rem;
     border-bottom: 1px solid var(--rule);
   }
 
-  .hero__inner { max-width: 60ch; }
+  .hero__inner { max-width: 58ch; }
 
   .hero__kicker {
     font-family: var(--mono);
@@ -77,11 +76,12 @@ const [featured, ...rest] = posts;
 
   .hero__title {
     font-family: var(--serif);
-    font-size: clamp(2.6rem, 6vw, 4.4rem);
-    line-height: 1.02;
+    font-size: clamp(2.45rem, 5.4vw, 4rem);
+    line-height: 1.04;
     letter-spacing: -0.02em;
     color: var(--ink-1);
-    margin: 0 0 1.2rem;
+    margin: 0 0 1rem;
+    max-width: 14ch;
   }
 
   .hero__title em {
@@ -92,10 +92,11 @@ const [featured, ...rest] = posts;
   .hero__lede {
     font-family: var(--serif);
     font-style: italic;
-    font-size: 1.35rem;
-    line-height: 1.45;
+    font-size: 1.22rem;
+    line-height: 1.5;
     color: var(--ink-2);
     margin: 0;
+    max-width: 44ch;
   }
 
   .feed {

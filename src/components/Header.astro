@@ -5,7 +5,9 @@ import { PRODUCT_URL } from '../consts';
 <header class="site-header">
   <div class="site-header__inner">
     <a href="/" class="brand" aria-label="BrowserMan Blog home">
-      <span class="brand__mark" aria-hidden="true">B</span>
+      <span class="brand__mark-wrap" aria-hidden="true">
+        <span class="brand__mark">B</span>
+      </span>
       <span class="brand__name">
         <span class="brand__name-main">BrowserMan</span>
         <span class="brand__name-sub">Blog</span>
@@ -53,10 +55,22 @@ import { PRODUCT_URL } from '../consts';
 
   .brand:hover { color: var(--ink-1); }
 
+  .brand__mark-wrap {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 0.8rem;
+    border: 1px solid var(--rule);
+    background: color-mix(in srgb, var(--paper) 78%, white 22%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.55) inset;
+  }
+
   .brand__mark {
     font-family: var(--serif);
     font-style: italic;
-    font-size: 2.4rem;
+    font-size: 1.8rem;
     line-height: 0.9;
     color: var(--ink-1);
     margin-top: -0.08em;
