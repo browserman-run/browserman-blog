@@ -3,6 +3,7 @@
 Standalone Astro blog for BrowserMan.
 
 This repo is intentionally separate from the main `browserman` product repo so content publishing, SEO, and deployment can move on their own cadence.
+It is configured to deploy to GitHub Pages.
 
 Planned production URL:
 - `https://blog.browserman.run`
@@ -50,18 +51,16 @@ pubDate: 2026-04-22
 
 Recommended deploy flow:
 
-- connect this repo to Railway
-- auto-deploy from `main`
-- use the included `nixpacks.toml`
-- bind the custom domain `blog.browserman.run`
+- push to `main`
+- GitHub Actions builds and deploys to GitHub Pages
+- the custom domain is set via `public/CNAME`
+- bind the domain `blog.browserman.run` in the repo Pages settings
 
-Railway settings:
+GitHub Pages settings:
 
-- runtime: Nixpacks
-- install command: `npm install`
-- build command: `npm run build`
-- start command: `npm run start`
-- root directory: repository root
+- source: GitHub Actions
+- custom domain: `blog.browserman.run`
+- keep HTTPS enabled after DNS is live
 
 ## Why separate from the main repo
 
