@@ -1,0 +1,13 @@
+Most multi-agent systems don’t fail at planning.
+
+They fail at execution.
+
+If you use OpenClaw, you’ll eventually hit the real question:
+
+What is actually shared across agents?
+Not just files — browser state, login sessions, permissions, and auditability.
+
+That’s where BrowserMan fits.
+
+New post:
+https://browserman.run/blog/agent-subagent-workspace-execution-layer/
