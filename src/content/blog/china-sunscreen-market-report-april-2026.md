@@ -15,8 +15,6 @@ The short version:
 
 High protection is now table stakes. The real competition is around who the product is for, when it will be used, and what bad experience it promises to avoid: greasiness, pilling, white cast, eye sting, acne, irritation, weak waterproofing, or inconvenient reapplication.
 
-![China Sunscreen Market Report — April 2026](../../assets/og/china-sunscreen-market-report-april-2026.png)
-
 ## Method and sample
 
 This report is based on Taobao search-result data collected in April 2026.
