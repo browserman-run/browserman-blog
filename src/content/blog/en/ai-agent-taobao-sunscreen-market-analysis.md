@@ -1,229 +1,325 @@
 ---
-title: "How to Use AI Agents for Market Analysis: A Taobao Workflow"
-description: "A practical workflow for using AI agents to collect ecommerce market data, clean product signals, and turn prices, titles, and sales text into grounded market-analysis hypotheses."
+title: "How to Use OpenClaw and BrowserMan to Collect Taobao Market Data"
+description: "A practical step-by-step guide to using OpenClaw, BrowserMan, and a real browser session to collect Taobao search results, clean ecommerce data, and turn it into market-analysis inputs."
 lang: en
 translationKey: ai-agent-taobao-sunscreen-market-analysis
 pubDate: 2026-04-28
+updatedDate: 2026-04-28
 heroImage: ../../../assets/og/taobao-sunscreen-market-analysis.png
 ---
 
-Most AI market analysis starts too late.
+Most AI market analysis starts with the wrong first step.
 
-It asks a model to generate insights before the agent has collected real market data. The result is usually a polished report built on thin evidence: plausible, generic, and hard to trust.
+It asks a model to “analyze the market” before the agent has collected any real market data. The output can sound polished, but it is usually built on thin evidence.
 
-A better workflow starts earlier. Before asking an AI agent to analyze a market, make it collect the market signals directly: the search results, product cards, prices, claims, reviews, complaints, competitor pages, and messy language that buyers and sellers actually use.
+A better workflow is simple:
 
-This article walks through that workflow using one concrete example: a Taobao search for sunscreen products.
+> Send an agent to the real market surface first. Then ask it to analyze what it actually collected.
 
-The goal is not to produce a definitive sunscreen market report. The goal is to show how an AI market-analysis workflow can move from real browser data to structured hypotheses without pretending it has more evidence than it does.
+This guide shows how to do that with OpenClaw and BrowserMan using one concrete example: collecting Taobao sunscreen search results and turning them into a usable market-analysis dataset.
 
-Most AI market-analysis demos skip this hard part. They start with a clean CSV, a public API, or a made-up dataset. Real ecommerce research starts somewhere messier: a logged-in browser, dynamic pages, product cards, ads, duplicates, redirect links, price text, sales text, and titles stuffed with keyword strategy.
+If you do not have OpenClaw set up yet, or you do not want to manage the agent environment yourself, you can also start from [ClawMama](https://clawmama.run/) as a simpler entry point, then use the same workflow idea: connect a real browser, give the agent a clear task, collect structured data, and turn it into analysis.
 
-That is exactly where browser agents become useful.
+## What you are building
 
-## Step 1: send the agent to the real market surface
+By the end of this workflow, you want a table like this:
 
-We used BrowserMan to let an agent work through a real Chrome session and search Taobao for:
+| Field | Example |
+|---|---|
+| query | 防晒霜 |
+| product title | ANESSA sunscreen milk SPF50+ |
+| price | RMB 94 |
+| sales text | 10万+人付款 |
+| shop | Tmall Global official store |
+| product URL | Taobao/Tmall item link |
+| notes | waterproof, face/body, high protection |
 
-> 防晒霜 — sunscreen
+That table is the real asset.
 
-The first workflow was deliberately simple:
+Once you have it, you can ask better questions:
 
-1. Open Taobao in a real browser session.
-2. Search for the target keyword.
-3. Extract visible product cards from the search results page.
-4. Clean the result set.
-5. Analyze prices, title language, sales text, shops, and links.
-6. Separate confirmed observations from hypotheses that require detail-page or review data.
+- What price bands dominate this category?
+- Which claims appear repeatedly in product titles?
+- Which use cases are sellers targeting?
+- Which promises should be validated against reviews?
+- What content angles or product opportunities emerge?
 
-That last step is important. A useful agent should not just summarize. It should know what it actually observed.
+This is how an AI agent becomes useful for market research: not by guessing, but by helping you collect and structure the messy web data first.
 
-## Step 2: capture only the fields the agent can actually observe
+## The stack
 
-From the Taobao search results page, the agent could reliably extract:
+You need three pieces.
 
-- rank,
+### 1. BrowserMan
+
+BrowserMan gives the agent delegated access to your real browser session.
+
+That matters for ecommerce work because many useful pages are dynamic, personalized, or login-dependent. The agent needs to operate the rendered page, but your cookies and logged-in state should stay in your browser.
+
+Use BrowserMan for:
+
+- opening Taobao in a real Chrome session,
+- using your existing login state when required,
+- running site-specific scripts,
+- extracting product cards from rendered pages,
+- keeping browser access revocable and scoped.
+
+### 2. OpenClaw
+
+OpenClaw is the agent workspace and execution layer.
+
+Use it for:
+
+- giving the task to the agent,
+- running BrowserMan commands,
+- saving raw JSON/CSV outputs,
+- cleaning the data,
+- writing analysis and reports.
+
+### 3. ClawMama, if you want an easier starting point
+
+If “install OpenClaw, configure the environment, and wire browser access” sounds like too much setup, use [ClawMama](https://clawmama.run/) as the easier on-ramp.
+
+The workflow does not change:
+
+1. connect a browser,
+2. describe the task clearly,
+3. collect data,
+4. clean the output,
+5. analyze the result.
+
+The important part is not the tool brand. The important part is that the agent works from real market data.
+
+## Step 1: install and connect BrowserMan
+
+Start with BrowserMan because Taobao data collection depends on a real browser surface.
+
+At a high level:
+
+1. Install BrowserMan from [browserman.run](https://browserman.run/).
+2. Connect it to your Chrome browser.
+3. Make sure the browser shows as online in your agent environment.
+4. Log in to Taobao manually if needed.
+5. Keep the browser open while the agent runs the task.
+
+The key principle:
+
+> Do not give the agent your Taobao password. Log in yourself, then delegate browser access through BrowserMan.
+
+That keeps the account session in your browser instead of pasting credentials into an agent chat.
+
+## Step 2: write a task prompt that produces data, not just prose
+
+Bad prompt:
+
+> Analyze the Taobao sunscreen market.
+
+That invites the model to guess.
+
+Better prompt:
+
+```text
+Use BrowserMan to search Taobao for “防晒霜”.
+Collect visible product cards from the search results page.
+For each product, extract: title, price, sales text, shop name, location if available, and product URL.
+Save the raw output as JSON.
+Then clean it into a CSV table.
+Do not claim review insights or exact sales unless those fields were actually collected.
+```
+
+This prompt does three useful things:
+
+1. It names the market surface: Taobao search.
+2. It defines the fields you want.
+3. It tells the agent not to overclaim.
+
+For market analysis, that third point is not optional. A good agent should separate observed data from hypotheses.
+
+## Step 3: collect Taobao search results
+
+In our sunscreen test, the BrowserMan Taobao search script returned product cards from a rendered Taobao search page.
+
+The first query was:
+
+```text
+防晒霜
+```
+
+The useful fields were:
+
 - product title,
 - price,
-- sales text, such as “90万+人付款”,
+- sales text,
 - shop name,
+- location,
 - product URL.
 
-The raw extraction returned 44 search-result rows. After removing duplicate-looking redirect rows and shop-card-like entries, we kept 31 product rows for the first analysis pass.
+For a larger sample, expand the query set instead of relying on one keyword.
 
-This sample does **not** include:
+For example:
 
-- product detail page copy,
-- main image OCR,
-- review text,
-- negative reviews,
-- exact sales counts,
-- a complete 200-product sample.
+```text
+防晒霜
+防晒乳
+防晒喷雾
+儿童防晒霜
+男士防晒霜
+油皮防晒霜
+```
 
-So the findings below should be read as search-page observations, not as a finished market report.
+This creates a better category sample because different search terms expose different product segments: general sunscreen, lotion, spray, children, men, oily skin, and so on.
 
-## Step 3: turn prices into a first market map
+## Step 4: save raw data before cleaning it
 
-In the cleaned 31-product sample, prices ranged from RMB 31.91 to RMB 224.75.
+Always save the raw output first.
 
-The median price was RMB 66.90. The mean was RMB 84.36.
+A good folder structure looks like this:
 
-| Price band | Products | Share | Median price |
-|---|---:|---:|---:|
-| Under RMB 50 | 5 | 16.1% | 43.90 |
-| RMB 50-100 | 18 | 58.1% | 63.26 |
-| RMB 100-200 | 7 | 22.6% | 132.74 |
-| Above RMB 200 | 1 | 3.2% | 224.75 |
+```text
+market-research/
+  taobao-sunscreen/
+    raw/
+      search-防晒霜.json
+      search-防晒乳.json
+      search-防晒喷雾.json
+    cleaned/
+      products.csv
+    notes/
+      findings.md
+```
 
-For this search page, RMB 50-100 looks like the main battlefield.
+Why keep raw files?
 
-It is not just a cheap-product zone. It contains mass-market sunscreen, imported brands, domestic brands, large-format products, and scenario-driven products for outdoor use, military training, body use, or face use.
+Because ecommerce pages are messy. You may later need to check whether a strange row came from the page, the extraction script, or your cleaning logic.
 
-The RMB 100-200 band looks more like the branded-performance zone, with products from names such as ANESSA, Decorte, Shiseido, and Lancome appearing in the sample.
+Raw data is your audit trail.
 
-That is already useful if you are building a market map. A product team could start asking:
+## Step 5: clean the product list
 
-- What does the RMB 50-100 buyer expect as table stakes?
-- What makes a product credible above RMB 100?
-- Which claims are being used to justify a premium?
-- Which segments are crowded enough to require a sharper angle?
+Taobao search results can include irrelevant or duplicate rows.
 
-## Step 4: turn product titles into a claim taxonomy
+In our sunscreen workflow, expanded searches produced raw rows that included non-cosmetic “sun protection” products such as car covers, sun shades, bottles, and test cards. These had to be removed before analysis.
 
-Every product title contained some kind of protection language. That is the category baseline.
+A practical cleaning pass should:
 
-The more interesting signal is the second and third layer of title language.
+1. deduplicate by product ID or URL,
+2. remove irrelevant categories,
+3. normalize prices into numbers,
+4. preserve the original sales text,
+5. keep the source query for each item,
+6. save the cleaned table as CSV.
 
-We grouped title keywords into rough categories:
+Do not clean too aggressively. If a product is ambiguous, keep it with a note or put it into a review queue.
 
-| Title signal | Products matched | Share |
-|---|---:|---:|
-| High protection | 31 | 100.0% |
-| Usage scenario | 22 | 71.0% |
-| Makeup / tone correction | 14 | 45.2% |
-| Lightweight skin feel | 13 | 41.9% |
-| Persona / skin type | 10 | 32.3% |
-| Skincare / functional benefit | 8 | 25.8% |
+## Step 6: create the first analysis table
 
-The titles were not just saying “SPF.”
+Once the data is clean, start with simple summaries.
 
-They were stacking claims like:
+### Price bands
 
-- refreshing,
-- not greasy,
-- water-light,
-- gel texture,
-- waterproof,
-- sweatproof,
-- outdoor,
-- military training,
-- commute,
-- face and body,
-- makeup primer,
-- tone-up,
-- whitening,
-- men,
-- students,
-- dry skin,
-- oily skin.
+Group products into price bands:
 
-In other words, the competition is not sunscreen as a function. It is:
+```text
+Under RMB 50
+RMB 50-100
+RMB 100-200
+RMB 200+
+```
 
-> protection × skin feel × use case.
+This quickly shows where the visible market is concentrated.
 
-That is a much better content and positioning lens than “sunscreen products are popular.”
+### Title signals
 
-## Step 5: convert market signals into content and positioning angles
+Create a keyword taxonomy from product titles:
 
-“Best sunscreen” is a crowded, generic topic.
+```text
+High protection: SPF, PA, UV, waterproof
+Usage scenario: outdoor, commute, military training, beach
+Persona / skin type: oily skin, dry skin, men, children, sensitive skin
+Makeup / tone correction: primer, tone-up, no white cast
+Lightweight feel: refreshing, non-greasy, gel, no pilling
+Skincare benefit: moisturizing, soothing, repair, anti-photoaging
+```
 
-The Taobao titles suggest more useful entry points:
+This turns messy titles into a market map.
 
-- sunscreen for military training,
-- sunscreen for commuting,
-- sunscreen for outdoor or beach use,
-- sunscreen for men,
-- sunscreen before makeup,
-- large-format body sunscreen,
-- lightweight sunscreen for oily skin,
-- moisturizing sunscreen for dry skin.
+### Hypotheses to validate later
 
-For marketers, this is the practical move.
+Search titles can suggest user anxieties, but they do not prove complaints.
 
-Do not start by asking, “How do we rank for the category keyword?”
-
-Start by asking:
-
-> In which situations does the buyer need this product, and what are they afraid will go wrong?
-
-That is where useful content, ad angles, landing pages, and product positioning come from.
-
-## Step 6: separate hypotheses from validated complaints
-
-Search-result titles do not prove user complaints. But they do point to what sellers are trying to preempt.
-
-If many products promise “not greasy,” “water-light,” “sweatproof,” “makeup-friendly,” or “for oily skin,” those claims are probably responding to known anxieties.
-
-The next step is to validate these against reviews.
-
-The seven complaint categories worth testing are:
+For sunscreen, title claims pointed to seven review-mining hypotheses:
 
 1. greasy or heavy feel,
-2. pilling or poor makeup compatibility,
+2. pilling under makeup,
 3. white cast,
 4. eye sting,
 5. acne or clogged-skin concerns,
 6. irritation or allergy,
-7. weak waterproofing, poor durability, or annoying reapplication.
+7. weak waterproofing or poor durability.
 
-This is where the workflow can become much more valuable.
+These should be tested against reviews in the next workflow.
 
-Once the agent can read review text, the analysis can compare:
+## Step 7: write the result as a report
 
-- what sellers promise in titles,
-- what detail pages emphasize,
-- what buyers praise,
-- what negative reviews repeat.
+A useful market report should not hide its method.
 
-That comparison is where real market opportunity often appears.
+Use this structure:
 
-## Why this workflow needs a real browser agent
+```text
+1. What data we collected
+2. What fields were available
+3. What we cleaned out
+4. Key price bands
+5. Repeated title signals
+6. Use-case segments
+7. Hypotheses that need review validation
+8. What brands or content teams should do next
+```
 
-This kind of work is awkward for a normal chatbot.
+That structure is simple, but it works.
 
-It is not just a question-answering task. It needs execution:
+It lets the reader trust the report because they can see the path from browser data to analysis.
 
-- open a dynamic ecommerce page,
-- work through a real browser session,
-- use the user’s existing logged-in state when needed,
-- read rendered product cards,
-- handle redirects and duplicate-looking rows,
-- preserve links for later inspection,
-- return structured data,
-- keep the user’s cookies local.
+Here is the output report from this workflow: [China Sunscreen Market Report — April 2026](/blog/china-sunscreen-market-report-april-2026/).
 
-That is the BrowserMan angle.
+## A reusable prompt template
 
-BrowserMan does not make the agent smarter by itself. It gives the agent a reliable way to operate the real web.
+Use this template for other categories:
 
-The browser stays with the user. The login state stays local. The agent gets delegated access to do the task.
+```text
+I want to analyze the [CATEGORY] market on [PLATFORM].
 
-For market analysis, that matters because the most useful data is often not sitting in a clean API. It is inside the real surfaces teams already use: ecommerce sites, marketplaces, dashboards, social feeds, review pages, admin tools, and customer portals.
+Use BrowserMan to search for these keywords:
+- [KEYWORD 1]
+- [KEYWORD 2]
+- [KEYWORD 3]
 
-## How to extend this into a full market-analysis system
+For each visible product result, collect:
+- title
+- price
+- sales text or rating text if visible
+- shop / seller
+- location if visible
+- product URL
+- source keyword
 
-This sunscreen sample is only the first layer.
+Save the raw output as JSON.
+Clean the results into a CSV.
+Remove irrelevant products and duplicates, but keep a note of what was removed.
 
-A fuller version of the workflow would add:
+Then summarize:
+1. price bands,
+2. repeated title claims,
+3. use-case segments,
+4. buyer anxieties suggested by the claims,
+5. what needs review or detail-page validation next.
 
-1. **More pages** — expand from 31 products to 200+ products.
-2. **Product detail pages** — extract brand claims, ingredients, specs, hero-image text, and bundle structure.
-3. **Review mining** — collect positive and negative reviews, then classify repeated complaints.
-4. **Claim-vs-complaint mapping** — compare seller promises against buyer disappointment.
-5. **Content opportunity output** — generate SEO topics, social posts, ad angles, and product positioning notes.
-6. **Tracking** — rerun the workflow weekly to watch price moves, new claims, and competitor shifts.
+Important: do not claim exact sales, review sentiment, or market share unless those fields were actually collected.
+```
 
-The same pattern can apply to many categories:
+This template works for more than sunscreen.
+
+Try it with:
 
 - coffee machines,
 - cat food,
@@ -231,23 +327,40 @@ The same pattern can apply to many categories:
 - running shoes,
 - air purifiers,
 - kids’ desks,
-- app marketplace reviews,
-- SaaS competitor pages.
+- app marketplace listings,
+- SaaS review pages.
 
-The category changes. The workflow stays similar.
+The category changes. The workflow stays the same.
 
-## The real lesson: AI market analysis starts with data collection
+## Why this is a good cornerstone workflow
 
-The useful part of AI market analysis is not that a model can produce confident observations.
+This is not just a Taobao trick.
 
-It is that an agent can go to the real market surface, collect messy signals, clean them, and say:
+It is a repeatable SEO and content system:
 
-> Here is what I actually saw. Here is what I can infer. Here is what still needs validation.
+1. publish a practical workflow guide,
+2. use the workflow to collect real data,
+3. publish a result report,
+4. link the report back to the workflow,
+5. repeat the pattern for another category.
 
-That is the difference between a content prompt and an operator workflow.
+For example:
 
-The first gives you polished guesses.
+- workflow: how to use agents for ecommerce market analysis,
+- result: China sunscreen market report,
+- next workflow: how to mine ecommerce reviews with agents,
+- next result: sunscreen negative-review opportunity report.
 
-The second gives you a repeatable way to learn from the market.
+That is stronger than writing generic AI thought pieces.
 
-That is what BrowserMan is built for: giving agents delegated access to real browser work, so they can produce grounded outputs instead of abstract summaries.
+It gives readers a practical method and a concrete proof asset.
+
+## The main lesson
+
+Do not ask an AI agent to invent a market report.
+
+Ask it to collect the market first.
+
+Then make it show its work.
+
+That is where OpenClaw, BrowserMan, and tools like ClawMama become useful: they help move AI market analysis from prompt-based guessing to browser-based evidence collection.
