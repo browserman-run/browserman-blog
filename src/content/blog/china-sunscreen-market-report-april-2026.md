@@ -1,269 +1,276 @@
 ---
-title: "2026年4月中国防晒霜市场分析报告"
-description: "基于淘宝防晒霜搜索结果页小样本，拆解中国防晒霜市场的价格带、卖点结构、场景机会和下一步评论验证方向。"
+title: "China Sunscreen Market Report — April 2026"
+description: "An AI-assisted market report based on 264 Taobao sunscreen search results and 140 cleaned product listings, covering price bands, claim structures, use-case segments, and complaint opportunities."
 pubDate: 2026-04-28
 heroImage: ../../assets/og/china-sunscreen-market-report-april-2026.png
 ---
 
-> 这是一份由 AI agent 辅助生成的市场观察报告。数据来自 2026 年 4 月一次淘宝“防晒霜”搜索结果页小样本：原始搜索结果 44 条，清洗后商品项 31 条。它不是全网统计，也不是完整行业白皮书；它更适合作为一个“从真实电商页面快速识别市场信号”的样板。
+Chinese sunscreen listings are no longer competing on SPF alone.
 
-在上一篇文章 [《How to Use AI Agents for Market Analysis: A Taobao Workflow》](/blog/ai-agent-taobao-sunscreen-market-analysis/) 中，我们解释了如何让 AI agent 先进入真实市场页面，再做分析：搜索、抽取、清洗、聚类、区分事实和假设。
+In April 2026, we used BrowserMan and an AI agent to collect Taobao search results across six sunscreen-related queries, then cleaned the output into a 140-product sample. The result is a sharper picture of how sunscreen products are being positioned in China’s ecommerce market.
 
-这篇文章是那套方法的成果型版本。
+The short version:
 
-我们不从“AI 很厉害”开始，而是直接看市场：2026 年 4 月，中国淘宝防晒霜搜索页到底透露了什么？
+> The Chinese sunscreen market is shifting from **protection claims** to **price-band strategy × skin-feel promises × use-case segmentation**.
 
-![2026年4月中国防晒霜市场分析报告信息图](../../assets/og/china-sunscreen-market-report-april-2026.png)
+High protection is now table stakes. The real competition is around who the product is for, when it will be used, and what bad experience it promises to avoid: greasiness, pilling, white cast, eye sting, acne, irritation, weak waterproofing, or inconvenient reapplication.
 
-## 一句话结论
+![China Sunscreen Market Report — April 2026](../../assets/og/china-sunscreen-market-report-april-2026.png)
 
-淘宝防晒霜市场的竞争，已经不再是简单的“高倍防晒”。
+## Method and sample
 
-更准确地说，它正在变成：
+This report is based on Taobao search-result data collected in April 2026.
 
-> **价格带竞争 × 肤感竞争 × 场景竞争。**
+We expanded the sample beyond a single query by searching six related terms:
 
-在我们清洗后的 31 个搜索结果商品中，50-100 元价格带占比最高；几乎所有商品都强调高倍防护，但真正拉开差异的是“清爽不油腻”“防水防汗”“军训/户外/通勤”“妆前/隔离/提亮”“男士/学生/油皮”等二级卖点。
+- 防晒霜 — sunscreen cream,
+- 防晒乳 — sunscreen lotion,
+- 防晒喷雾 — sunscreen spray,
+- 儿童防晒霜 — children’s sunscreen,
+- 男士防晒霜 — men’s sunscreen,
+- 油皮防晒霜 — sunscreen for oily skin.
 
-这意味着，防晒霜品牌和内容团队如果还只围绕“SPF50”“防紫外线”做表达，会很快陷入同质化。
+Across those searches, the raw extraction returned **264 search-result rows**. After deduplication and filtering out irrelevant results, such as car covers, bottles, test cards, and non-cosmetic “sun protection” products, we kept **140 cleaned sunscreen product listings**.
 
-更好的切口是：
+The agent extracted visible search-page fields:
 
-> 用户在什么场景里需要防晒？他们最怕这瓶防晒带来什么糟糕体验？
+- product title,
+- price,
+- sales text,
+- shop name,
+- product URL,
+- source query.
 
-## 样本说明：这份报告看到了什么，没看到什么
+This is still a search-page market sample, not a full retail audit. It does not include product-detail-page copy, image OCR, review mining, or verified exact sales counts.
 
-本次分析基于 BrowserMan 执行淘宝搜索任务后获得的数据。
+The workflow behind this report is described separately in [How to Use AI Agents for Market Analysis: A Taobao Workflow](/blog/ai-agent-taobao-sunscreen-market-analysis/). The key idea is simple: AI market analysis should start with real market data collection, not with a blank prompt asking for conclusions.
 
-关键词：
+## Key numbers
 
-> 防晒霜
+The cleaned 140-product sample shows a market centered around accessible mid-range pricing, with a long premium tail.
 
-当前可稳定抽取字段包括：
-
-- 商品标题；
-- 价格；
-- 销量文本，例如“90万+人付款”；
-- 店铺；
-- 商品链接；
-- 搜索结果排序。
-
-数据范围：
-
-| 项目 | 数值 |
+| Metric | Value |
 |---|---:|
-| 原始搜索结果 | 44 条 |
-| 清洗后商品项 | 31 条 |
-| 最低价格 | 31.91 元 |
-| 最高价格 | 224.75 元 |
-| 中位价 | 66.90 元 |
-| 均价 | 84.36 元 |
+| Raw search-result rows | 264 |
+| Cleaned sunscreen product listings | 140 |
+| Lowest price | RMB 17.90 |
+| Highest price | RMB 995.00 |
+| Median price | RMB 83.00 |
+| Average price | RMB 107.41 |
 
-需要明确的是：这份报告还没有使用商品详情页、评论区、差评文本、主图 OCR 或多页 200 商品样本。
+The price range is wide, but the market center is clear: most visible products sit below RMB 200, and the strongest cluster sits between RMB 50 and RMB 100.
 
-所以它的价值不是“最终答案”，而是快速读出搜索结果页中的市场结构。
+## Finding 1: RMB 50-100 is the visible battlefield
 
-## 发现一：50-100 元是搜索页主战场
+Price distribution across the 140-product cleaned sample:
 
-清洗后的 31 个商品价格分布如下：
-
-| 价格带 | 商品数 | 占比 | 中位价 |
+| Price band | Products | Share | Median price |
 |---|---:|---:|---:|
-| 50 元以下 | 5 | 16.1% | 43.90 元 |
-| 50-100 元 | 18 | 58.1% | 63.26 元 |
-| 100-200 元 | 7 | 22.6% | 132.74 元 |
-| 200 元以上 | 1 | 3.2% | 224.75 元 |
+| Under RMB 50 | 31 | 22.1% | 37.90 |
+| RMB 50-100 | 59 | 42.1% | 75.00 |
+| RMB 100-200 | 40 | 28.6% | 132.74 |
+| RMB 200+ | 10 | 7.1% | 289.74 |
 
-最值得注意的是 50-100 元区间。
+The largest band is **RMB 50-100**, with 42.1% of the sample.
 
-这个区间占据了样本中的 58.1%。它不是单纯的低价带，而是一个高度混合的竞争区：大众基础款、进口品牌、国货品牌、大容量产品、军训防晒、户外防晒、面部/身体两用产品，都在这里竞争。
+That band is not simply “cheap sunscreen.” It contains mass-market products, imported brands, domestic brands, children’s sunscreen, men’s sunscreen, oily-skin sunscreen, body sunscreen, and scenario-driven products for outdoor use or military training.
 
-100-200 元区间更像品牌主力区。安热沙、黛珂、资生堂、兰蔻等品牌更容易出现在这个范围。
+The RMB 100-200 band looks like the performance and brand-confidence zone. Products here more often lean on recognizable brand names, imported positioning, higher SPF claims, skincare benefits, or specialized use cases.
 
-这给品牌方一个直接问题：
+Above RMB 200, the sample becomes a smaller premium tail: high-end imported products, multi-product bundles, or specialist formulations.
 
-> 如果你卖 50-100 元，你凭什么在拥挤的主战场里被点击？如果你卖 100 元以上，你凭什么让用户相信这不是溢价？
+The pricing implication is direct:
 
-## 发现二：高倍防护已经是入场券，不是差异化
+- If a product sits below RMB 50, it needs a clear volume, entry-level, or trial logic.
+- If it sits at RMB 50-100, it needs sharper differentiation because that is the densest competitive zone.
+- If it sits at RMB 100-200, it needs to explain why it deserves a premium.
+- If it sits above RMB 200, it needs brand trust, formulation credibility, or luxury/skincare positioning.
 
-我们把商品标题按卖点词做了粗分类：
+## Finding 2: high protection is no longer enough
 
-| 标题信号 | 命中商品数 | 占比 |
+We classified product titles into six claim groups.
+
+| Title signal | Products matched | Share |
 |---|---:|---:|
-| 高倍防护 | 31 | 100.0% |
-| 场景防晒 | 22 | 71.0% |
-| 底妆 / 修颜 | 14 | 45.2% |
-| 轻薄肤感 | 13 | 41.9% |
-| 人群 / 肤质 | 10 | 32.3% |
-| 养肤 / 功效 | 8 | 25.8% |
+| High protection | 138 | 98.6% |
+| Usage scenario | 108 | 77.1% |
+| Persona / skin type | 73 | 52.1% |
+| Makeup / tone correction | 61 | 43.6% |
+| Lightweight skin feel | 49 | 35.0% |
+| Skincare / functional benefit | 31 | 22.1% |
 
-“高倍防护”在样本中 100% 命中，说明它已经是防晒品类的基础语言。SPF、防紫外线、高倍、防晒、隔离，这些词需要出现，但很难单独构成差异。
+Almost every listing uses high-protection language: SPF, PA, UV, high-protection, anti-ultraviolet, waterproof, or related terms.
 
-更有价值的是后面的词：
+That means high protection is no longer a differentiator. It is the price of entry.
 
-- 清爽；
-- 不油腻；
-- 水感；
-- 啫喱；
-- 防水防汗；
-- 军训；
-- 户外；
-- 通勤；
-- 妆前；
-- 提亮；
-- 男士；
-- 学生；
-- 油皮；
-- 干皮。
+The more interesting signals are the second-layer claims:
 
-这些词说明，防晒霜不是一个单一需求，而是一组“使用场景 + 使用体验”的组合。
+- usage scenario: outdoor, military training, commute, beach, face, body, children, men;
+- persona and skin type: oily skin, dry skin, sensitive skin, babies, students, men;
+- makeup and tone correction: primer, tone-up, whitening, no white cast, makeup-friendly;
+- lightweight feel: refreshing, non-greasy, water-light, gel texture, no pilling;
+- skincare benefit: repair, moisturizing, soothing, anti-photoaging, brightening.
 
-## 发现三：场景词是下一轮内容竞争入口
+The market language is moving from “this blocks the sun” to “this solves a specific user situation without creating a new problem.”
 
-如果只写“防晒霜推荐”，内容很容易进入红海。
+## Finding 3: the category is splitting into use-case markets
 
-但淘宝标题给出了更细的入口：
+The most useful way to read this market is not by brand alone.
 
-- 军训防晒；
-- 通勤防晒；
-- 户外 / 海边防晒；
-- 男士防晒；
-- 妆前防晒；
-- 全身大容量防晒；
-- 油皮清爽防晒；
-- 干皮保湿防晒。
+It is by task.
 
-这些不是简单的 SEO 长尾词，而是用户决策场景。
+A buyer is not only asking “which sunscreen is best?” They are often asking a much more specific question:
 
-同一个用户在通勤、军训、海边、上妆前、运动时，对“好防晒”的定义并不一样。
+- What can I use during military training?
+- What will not feel greasy on oily skin?
+- What works under makeup?
+- What is safe enough for children?
+- What can I use on both face and body?
+- What will not leave a white cast?
+- What will survive sweat and outdoor use?
 
-所以内容团队真正应该做的，不是继续堆防晒成分和 SPF 解释，而是把用户场景拆开：
+This creates a set of content and positioning segments:
 
-| 场景 | 用户真正担心的事 | 内容机会 |
+| Segment | Buyer anxiety | Better content angle |
 |---|---|---|
-| 军训 / 户外 | 晒黑、流汗、不持久 | 防水防汗测试、补涂指南 |
-| 通勤 | 厚重、油腻、麻烦 | 轻薄日常防晒清单 |
-| 妆前 | 搓泥、不贴妆、泛白 | 妆前防晒避坑指南 |
-| 男士 | 油腻、假白、麻烦 | 男士清爽防晒选择逻辑 |
-| 油皮 | 闷痘、出油、成膜差 | 油皮防晒评价维度 |
-| 干皮 | 拔干、卡粉、不舒服 | 保湿型防晒对比 |
+| Military training / outdoor | sweat, sunburn, reapplication | waterproofing, durability, reapplication routines |
+| Daily commute | greasiness, inconvenience | lightweight everyday sunscreen logic |
+| Oily skin | shine, clogged pores, heavy film | oil-control and non-greasy evaluation criteria |
+| Makeup base | pilling, white cast, poor fit | sunscreen-under-makeup compatibility |
+| Children | irritation, safety, outdoor exposure | physical sunscreen and gentle formulas |
+| Men | white cast, stickiness, hassle | low-friction sunscreen routines |
+| Face and body | cost, volume, comfort | large-format and multi-use tradeoffs |
 
-这就是“结果型内容”应该给出的东西：不是告诉读者市场很大，而是告诉读者怎么切市场。
+This is where market analysis becomes useful for content strategy.
 
-## 发现四：差评机会藏在正向卖点背后
+A generic “best sunscreen” article competes with everyone. A specific angle like “sunscreen for oily skin during summer commuting” gives a brand a much sharper entry point.
 
-当前样本还没有读取评论区，所以我们不能说“差评中已经统计出这些问题”。
+## Finding 4: the opportunity is hidden in avoided failures
 
-但标题中的正向卖点，已经能反推出下一步评论挖掘方向。
+Positive claims in product titles often point to negative experiences sellers are trying to preempt.
 
-当很多商品都强调“清爽”“不油腻”“防水防汗”“妆前”“油皮可用”，它们很可能是在回应用户已经存在的顾虑。
+When listings repeatedly say “non-greasy,” “water-light,” “no pilling,” “makeup-friendly,” “waterproof,” or “for oily skin,” they are implicitly responding to known buyer fears.
 
-下一步最值得验证的 7 类差评机会是：
+The seven complaint opportunities to validate next are:
 
-1. **油腻 / 闷**：用户不喜欢厚重膜感；
-2. **搓泥 / 不贴妆**：妆前防晒的核心负反馈；
-3. **泛白 / 假白**：尤其影响男士、通勤和自然妆感人群；
-4. **刺眼 / 熏眼睛**：防晒产品常见但容易被忽视的体验问题；
-5. **闷痘 / 致痘**：油皮和敏感肌用户的购买阻力；
-6. **过敏 / 刺激**：成分和肤质适配问题；
-7. **不防水 / 不持久 / 补涂麻烦**：户外和军训场景的关键痛点。
+1. **Greasy or heavy feel** — the product protects, but users hate wearing it.
+2. **Pilling or poor makeup compatibility** — especially important for primer-style sunscreen.
+3. **White cast** — a major issue for men, daily commuters, and natural-makeup users.
+4. **Eye sting** — common enough to matter, but often missing from top-line positioning.
+5. **Acne or clogged-skin concerns** — central for oily-skin and sensitive-skin buyers.
+6. **Irritation or allergy** — critical for children’s and sensitive-skin products.
+7. **Weak waterproofing or poor durability** — the promise fails in outdoor, sweat, or beach scenarios.
 
-这些问题如果能通过评论数据验证，就会变成非常强的产品机会和内容机会。
+These are not yet review-validated findings. They are search-page hypotheses.
 
-## 发现五：防晒市场正在从“产品词”走向“任务词”
+But they are exactly the hypotheses a market-analysis agent should take into the next step: product pages and reviews.
 
-一个有意思的变化是，标题里越来越多词不是描述产品，而是描述任务。
+## Finding 5: sunscreen marketing is becoming scenario infrastructure
 
-比如：
+The most important pattern in the sample is that the market is becoming more operational.
 
-- 军训；
-- 户外；
-- 通勤；
-- 妆前；
-- 全身；
-- 男士；
-- 学生。
+Listings are not only selling ingredients or SPF numbers. They are selling a job-to-be-done:
 
-这说明用户不是在抽象地购买“防晒霜”，而是在购买某个具体任务的解决方案：
+- get through military training without burning,
+- commute without feeling oily,
+- wear sunscreen under makeup without pilling,
+- protect a child outdoors,
+- avoid white cast in daily life,
+- use one product for face and body,
+- keep protection during sweat and heat.
 
-> 我要军训不晒黑。  
-> 我要通勤不油腻。  
-> 我要上妆不搓泥。  
-> 我要户外不脱防晒。  
-> 我要一瓶脸和身体都能用。  
+That shift matters.
 
-对品牌来说，这比“功效堆叠”更重要。
+It means brands should stop treating sunscreen as one generic category page. The better strategy is to build a matrix of:
 
-如果一个品牌能把任务说清楚，把场景讲透，把用户最害怕的失败体验解决掉，它就有机会从同质化的 SPF 竞争里跳出来。
+> user × scenario × failure mode × proof.
 
-## 对品牌和内容团队的建议
+For example:
 
-基于这批搜索结果样本，我会给出 5 个建议。
+| User | Scenario | Failure mode | Proof needed |
+|---|---|---|---|
+| Oily-skin commuter | daily summer use | greasy finish | texture test, oil-control review signals |
+| Student | military training | sweat and reapplication | waterproofing, durability, price/value |
+| Makeup user | base layer | pilling or white cast | compatibility with foundation |
+| Parent | child outdoor use | irritation | gentle formula and safety language |
+| Male buyer | simple daily routine | stickiness and visible cast | low-friction, invisible finish |
 
-### 1. 不要只写 SPF，写场景
+That is a more useful map than a simple brand ranking.
 
-SPF 是基础信任，不是传播点。
+## What brands should do next
 
-更好的表达是：
+Based on this sample, five moves stand out.
 
-- 军训 8 小时怎么补涂；
-- 油皮夏天怎么选不闷的防晒；
-- 妆前防晒为什么容易搓泥；
-- 通勤防晒要不要防水防汗；
-- 男士防晒如何避免假白。
+### 1. Treat SPF as trust, not the hook
 
-### 2. 50-100 元产品要打清楚“为什么选你”
+High protection needs to be present, but it does not create surprise.
 
-这个价格带最拥挤。
+The hook should come from scenario and avoided failure: no pilling, no greasy film, no white cast, sweat resistance, child-safe outdoor use, or oily-skin comfort.
 
-如果没有明确场景、人群或体验优势，很容易被淹没。
+### 2. Build around the RMB 50-100 battlefield
 
-### 3. 100 元以上产品要解释溢价
+This is the densest visible price zone.
 
-品牌名本身有用，但还不够。
+Products in this range need clear segmentation. A vague “high-protection sunscreen” will disappear. A product positioned around “oily-skin commute,” “student military training,” or “makeup-friendly daily sunscreen” has a better chance of being remembered.
 
-高价产品需要解释：
+### 3. Justify every premium above RMB 100
 
-- 肤感更好吗？
-- 更适合户外吗？
-- 更适合妆前吗？
-- 更温和吗？
-- 更持久吗？
+The RMB 100-200 band needs proof.
 
-### 4. 评论区会比标题更有价值
+That proof can come from brand trust, imported formulation, skincare benefit, better feel, stronger outdoor performance, or review-backed comfort.
 
-标题告诉我们商家想卖什么。
+### 4. Use review mining to validate title promises
 
-评论会告诉我们用户是否相信、是否满意、哪里失望。
+Titles show what sellers want buyers to believe.
 
-真正的机会通常出现在两者之间：
+Reviews show where the promise breaks.
 
-> 商家反复承诺的地方，也是用户最容易失望的地方。
+The next useful analysis is claim-vs-complaint mapping: compare title claims against positive and negative review language.
 
-### 5. 用 AI 做市场分析，第一步不是让它写报告
+### 5. Turn market analysis into a repeatable monitoring system
 
-第一步是让它去真实市场里拿数据。
+A one-time report is useful. A recurring workflow is more valuable.
 
-这也是我们在 [《How to Use AI Agents for Market Analysis: A Taobao Workflow》](/blog/ai-agent-taobao-sunscreen-market-analysis/) 里强调的核心观点：AI market analysis should start with data collection, not report generation.
+The same agent workflow can be rerun monthly to track:
 
-## 下一步：从搜索结果走向完整市场报告
+- new price-band shifts,
+- emerging claims,
+- rising brands,
+- changing scenario language,
+- complaint patterns,
+- seasonal events such as summer, travel, school, and military training.
 
-这份报告只是第一层。
+## What this report does not claim
 
-要把它升级成真正完整的《中国防晒霜市场分析报告》，下一步需要补齐：
+This report should be read with clear boundaries.
 
-1. **多页样本**：从 31 个商品扩展到 200 个以上；
-2. **详情页文案**：分析成分、功效、规格、主图卖点和价格包装；
-3. **评论 / 差评**：验证 7 类负反馈是否真的高频；
-4. **品牌地图**：区分国货、日韩、欧美、跨境、自营和白牌；
-5. **时间追踪**：每周重复抓取，观察价格、卖点和排名变化。
+It does not claim to represent all Chinese sunscreen sales. It does not include offline retail. It does not include verified GMV. It does not include review sentiment yet. It does not rank brands by true market share.
 
-但即使是这次小样本，也已经说明一点：
+What it does show is more specific:
 
-> 防晒霜市场的机会，不在“再说一次高倍防晒”，而在找到具体场景里的具体失败体验。
+> In a 140-product cleaned Taobao search sample, sunscreen competition is visibly organized around price bands, scenario claims, skin-feel promises, and persona-specific positioning.
 
-这也是 AI agent 做市场分析最有价值的地方。
+That is already enough to guide better content, better research questions, and better next-step analysis.
 
-它不是替你凭空生成结论。
+## Bottom line
 
-它应该帮你进入真实市场，收集信号，拆出结构，然后告诉你：哪里已经能判断，哪里还需要继续验证。
+The sunscreen market is not short on protection claims.
+
+It is short on clear answers to specific user failures.
+
+The strongest opportunities are likely to come from products and content that can say:
+
+- this is for this user,
+- in this situation,
+- where this bad experience usually happens,
+- and here is why this product avoids it.
+
+That is the real market map emerging from the sample.
+
+Not “SPF50 is popular.”
+
+But:
+
+> **Sunscreen is becoming a scenario-specific comfort product.**
+
+And that is a much more interesting market to analyze.

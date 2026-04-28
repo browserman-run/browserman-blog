@@ -1,31 +1,33 @@
-# 2026年4月中国防晒霜市场分析报告 - 信息图数据
+# China Sunscreen Market Report — April 2026
 
-数据来源：淘宝“防晒霜”搜索结果页小样本，BrowserMan + AI agent 抽取。
-样本：原始搜索结果 44 条，清洗后商品项 31 条。
-注意：不包含详情页、评论区、差评、主图 OCR 或完整 200 商品样本。
+Data source: Taobao sunscreen search-result sample collected with BrowserMan + AI agent in April 2026.
+Search queries: 防晒霜, 防晒乳, 防晒喷雾, 儿童防晒霜, 男士防晒霜, 油皮防晒霜.
+Raw rows: 264.
+Cleaned sunscreen product listings: 140.
+Caveat: search-page sample only; no product-detail-page copy, review mining, image OCR, exact sales verification, or full retail audit.
 
-核心结论：防晒霜竞争正在从“高倍防晒”走向“价格带竞争 × 肤感竞争 × 场景竞争”。
+Core insight: sunscreen competition is shifting from protection claims to price-band strategy × skin-feel promises × use-case segmentation.
 
-价格数据：
-- 最低价：31.91 元
-- 最高价：224.75 元
-- 中位价：66.90 元
-- 均价：84.36 元
+Key metrics:
+- Lowest price: RMB 17.90
+- Highest price: RMB 995.00
+- Median price: RMB 83.00
+- Average price: RMB 107.41
 
-价格带：
-- 50 元以下：5 个商品，占比 16.1%，中位价 43.90 元
-- 50-100 元：18 个商品，占比 58.1%，中位价 63.26 元
-- 100-200 元：7 个商品，占比 22.6%，中位价 132.74 元
-- 200 元以上：1 个商品，占比 3.2%，中位价 224.75 元
+Price bands:
+- Under RMB 50: 31 products, 22.1%, median RMB 37.90
+- RMB 50-100: 59 products, 42.1%, median RMB 75.00
+- RMB 100-200: 40 products, 28.6%, median RMB 132.74
+- RMB 200+: 10 products, 7.1%, median RMB 289.74
 
-标题卖点：
-- 高倍防护：31 个商品，占比 100.0%
-- 场景防晒：22 个商品，占比 71.0%
-- 底妆 / 修颜：14 个商品，占比 45.2%
-- 轻薄肤感：13 个商品，占比 41.9%
-- 人群 / 肤质：10 个商品，占比 32.3%
-- 养肤 / 功效：8 个商品，占比 25.8%
+Title signals:
+- High protection: 138 products, 98.6%
+- Usage scenario: 108 products, 77.1%
+- Persona / skin type: 73 products, 52.1%
+- Makeup / tone correction: 61 products, 43.6%
+- Lightweight skin feel: 49 products, 35.0%
+- Skincare / functional benefit: 31 products, 22.1%
 
-场景入口：军训防晒、通勤防晒、户外 / 海边防晒、男士防晒、妆前防晒、全身大容量防晒、油皮清爽防晒、干皮保湿防晒。
+Use-case segments: military training / outdoor, daily commute, oily skin, makeup base, children, men, face and body.
 
-7 类待验证差评机会：油腻 / 闷、搓泥 / 不贴妆、泛白 / 假白、刺眼 / 熏眼睛、闷痘 / 致痘、过敏 / 刺激、不防水 / 不持久 / 补涂麻烦。
+Complaint opportunities to validate next: greasy or heavy feel, pilling or poor makeup compatibility, white cast, eye sting, acne or clogged-skin concerns, irritation or allergy, weak waterproofing or poor durability.
