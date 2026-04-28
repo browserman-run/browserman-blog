@@ -18,7 +18,7 @@ A better workflow is simple:
 
 This guide shows how to do that with OpenClaw and BrowserMan using one concrete example: collecting Taobao sunscreen search results and turning them into a usable market-analysis dataset.
 
-If you do not have OpenClaw set up yet, or you do not want to manage the agent environment yourself, you can also start from [ClawMama](https://clawmama.run/) as a simpler entry point, then use the same workflow idea: connect a real browser, give the agent a clear task, collect structured data, and turn it into analysis.
+If you do not have OpenClaw set up yet, or you do not want to manage the agent server yourself, you can also start from [ClawMama](https://clawmama.run/): a hosted OpenClaw bot that can be launched from Telegram in a few minutes. The workflow idea stays the same: connect a real browser, give the agent a clear task, collect structured data, and turn it into analysis.
 
 ## What you are building
 
@@ -76,19 +76,31 @@ Use it for:
 - cleaning the data,
 - writing analysis and reports.
 
-### 3. ClawMama, if you want an easier starting point
+### 3. ClawMama, if you want a hosted OpenClaw bot
 
-If “install OpenClaw, configure the environment, and wire browser access” sounds like too much setup, use [ClawMama](https://clawmama.run/) as the easier on-ramp.
+If “install OpenClaw, configure the environment, and keep an agent server running” sounds like too much setup, [ClawMama](https://clawmama.run/) is the easier on-ramp.
+
+ClawMama gives you a hosted OpenClaw bot on Telegram. The setup is designed to be simple:
+
+1. open `@clawmamarun_bot` on Telegram,
+2. send `/create`,
+3. paste a BotFather token,
+4. choose a template,
+5. start using your OpenClaw bot.
+
+The important difference is operational: instead of running the bot on your personal computer or wiring your own server, each bot runs on its own isolated cloud server. ClawMama handles deployment, storage, sleep/wake behavior, and the OpenClaw runtime for you.
+
+That makes it a good option for people who want the workflow without becoming infrastructure operators first.
 
 The workflow does not change:
 
-1. connect a browser,
-2. describe the task clearly,
+1. connect a real browser through BrowserMan,
+2. describe the market-research task clearly,
 3. collect data,
 4. clean the output,
 5. analyze the result.
 
-The important part is not the tool brand. The important part is that the agent works from real market data.
+The important part is not whether you run OpenClaw yourself or use ClawMama. The important part is that the agent works from real market data.
 
 ## Step 1: install and connect BrowserMan
 
