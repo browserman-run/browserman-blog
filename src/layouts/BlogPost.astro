@@ -130,14 +130,12 @@ const fmt = (d: Date) => new Intl.DateTimeFormat(lang === 'zh' ? 'zh-CN' : 'en-U
 
   .post__hero {
     margin: 0 0 2.5rem;
-    display: flex;
-    justify-content: center;
   }
 
   .post__hero img {
-    width: auto;
+    width: 100%;
     max-width: 100%;
-    max-height: min(72vh, 760px);
+    height: auto;
     object-fit: contain;
     display: block;
   }
