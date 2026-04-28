@@ -1,8 +1,10 @@
 ---
 title: "The browser-agent control plane: scope, audit, handoff, rollback"
 description: "Browser agents do not become production-ready when they learn to click reliably. They become delegable when the product defines a control plane around the browser session: scope, approval gates, audit trails, handoff, and revoke or rollback."
+lang: en
+translationKey: browser-agent-control-plane
 pubDate: 2026-04-26
-heroImage: ../../assets/og/browser-agent-control-plane.png
+heroImage: ../../../assets/og/browser-agent-control-plane.png
 ---
 
 Most browser-agent demos still ask a capability question:

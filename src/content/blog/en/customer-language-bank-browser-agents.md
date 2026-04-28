@@ -1,8 +1,10 @@
 ---
 title: "AI marketing needs customer language, not another copy prompt"
 description: "Useful marketing agents should not start from a blank chat box. They should read Amazon reviews, Reddit threads, TikTok comments, G2 complaints, support tickets, and turn real customer language into a hook bank before writing."
+lang: en
+translationKey: customer-language-bank-browser-agents
 pubDate: 2026-04-27
-heroImage: ../../assets/og/customer-language-bank-browser-agents.png
+heroImage: ../../../assets/og/customer-language-bank-browser-agents.png
 ---
 
 Most AI marketing workflows start in the wrong place.

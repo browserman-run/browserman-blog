@@ -3,23 +3,48 @@ import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import type { Lang } from '../lib/i18n';
+import { getLocalizedArchiveUrl } from '../lib/i18n';
+import { t } from '../i18n/ui';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & {
+  translationUrl?: string;
+  alternates?: { lang: Lang | 'x-default'; url: string }[];
+  canonicalUrl?: string;
+};
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  socialImage,
+  lang = 'en',
+  translationUrl,
+  alternates = [],
+  canonicalUrl,
+} = Astro.props;
 
-const fmt = (d: Date) => new Intl.DateTimeFormat('en-US', {
+const fmt = (d: Date) => new Intl.DateTimeFormat(lang === 'zh' ? 'zh-CN' : 'en-US', {
   year: 'numeric', month: 'long', day: 'numeric'
 }).format(d);
 ---
 
-<html lang="en">
+<html lang={lang}>
   <head>
-    <BaseHead title={title} description={description} image={heroImage} />
+    <BaseHead
+      title={title}
+      description={description}
+      image={socialImage ?? heroImage}
+      lang={lang}
+      canonicalUrl={canonicalUrl}
+      alternates={alternates}
+    />
   </head>
 
   <body>
-    <Header />
+    <Header lang={lang} translationUrl={translationUrl} />
 
     <main>
       <article class="post">
@@ -29,7 +54,7 @@ const fmt = (d: Date) => new Intl.DateTimeFormat('en-US', {
             {updatedDate && (
               <>
                 <span aria-hidden="true">·</span>
-                <span>Updated {fmt(updatedDate)}</span>
+                <span>{t(lang, 'updated')} {fmt(updatedDate)}</span>
               </>
             )}
           </div>
@@ -49,8 +74,8 @@ const fmt = (d: Date) => new Intl.DateTimeFormat('en-US', {
         </div>
 
         <footer class="post__footer">
-          <a href="/" class="post__back">
-            <span aria-hidden="true">←</span> All writing
+          <a href={getLocalizedArchiveUrl(lang)} class="post__back">
+            <span aria-hidden="true">←</span> {t(lang, 'allWriting')}
           </a>
         </footer>
       </article>
@@ -105,10 +130,15 @@ const fmt = (d: Date) => new Intl.DateTimeFormat('en-US', {
 
   .post__hero {
     margin: 0 0 2.5rem;
+    display: flex;
+    justify-content: center;
   }
 
   .post__hero img {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
+    max-height: min(72vh, 760px);
+    object-fit: contain;
     display: block;
   }
 
@@ -127,6 +157,18 @@ const fmt = (d: Date) => new Intl.DateTimeFormat('en-US', {
   }
 
   .post__back:hover { color: var(--amber-deep); }
+
+  html:lang(zh) .post__title {
+    font-family: var(--sans);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+
+  html:lang(zh) .post__dek {
+    font-family: var(--sans);
+    font-style: normal;
+    line-height: 1.65;
+  }
 
   @media (max-width: 720px) {
     .post { padding: 2.5rem 1rem 2rem; }

@@ -1,8 +1,10 @@
 ---
 title: "How to Use AI Agents for Market Analysis: A Taobao Workflow"
 description: "A practical workflow for using AI agents to collect ecommerce market data, clean product signals, and turn prices, titles, and sales text into grounded market-analysis hypotheses."
+lang: en
+translationKey: ai-agent-taobao-sunscreen-market-analysis
 pubDate: 2026-04-28
-heroImage: ../../assets/og/taobao-sunscreen-market-analysis.png
+heroImage: ../../../assets/og/taobao-sunscreen-market-analysis.png
 ---
 
 Most AI market analysis starts too late.

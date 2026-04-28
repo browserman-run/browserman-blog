@@ -1,0 +1,61 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { PRODUCT_URL, SITE_URL } from '../../consts';
+
+const lang = 'zh';
+const title = '关于';
+const description = 'BrowserMan 是面向 AI agent 的真实浏览器执行层，让 agent 能在用户授权下操作真实 Chrome 工作流。';
+---
+
+<html lang={lang}>
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      lang={lang}
+      canonicalUrl={SITE_URL + '/zh/about/'}
+      alternates={[
+        { lang: 'en', url: SITE_URL + '/about/' },
+        { lang: 'zh', url: SITE_URL + '/zh/about/' },
+        { lang: 'x-default', url: SITE_URL + '/about/' },
+      ]}
+    />
+  </head>
+  <body>
+    <Header lang={lang} translationUrl="/about/" />
+    <main>
+      <article class="about">
+        <header class="about__head">
+          <p class="mono about__kicker">关于 · BrowserMan</p>
+          <h1 class="about__title">让浏览器真正为你工作。</h1>
+        </header>
+        <div class="about__body prose">
+          <p>BrowserMan 是面向 AI agent 的真实浏览器执行层。Agent 可以打开标签页、点击、填写表单，并把重复性的网页工作接过去；用户保留浏览器、登录态和授权控制。</p>
+          <h2>这个博客写什么</h2>
+          <p>这里记录我们正在构建什么，以及为什么这么构建。不是新闻稿，而是工作笔记、产品思考和真实 workflow 的复盘。</p>
+          <ul>
+            <li>产品更新和发布说明</li>
+            <li>关于授权、审计、真实浏览器会话的设计判断</li>
+            <li>AI agent 浏览器自动化实践</li>
+            <li>适合沉淀成文章的市场、增长和技术观察</li>
+          </ul>
+          <h2>为什么单独做博客</h2>
+          <p>产品站负责解释 BrowserMan 是什么，博客负责展示 BrowserMan 能带来什么工作方式。我们更关心真实任务、可复用 workflow 和有证据的判断。</p>
+          <h2>继续关注</h2>
+          <p>新文章会发布在 <a href="/zh/">中文文章列表</a> 和 <a href="/zh/rss.xml">中文 RSS</a>。产品本身在 <a href={PRODUCT_URL}>browserman.run</a>。</p>
+        </div>
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .about { max-width: var(--prose); margin: 0 auto; padding: 4rem 1.5rem 2rem; }
+  .about__head { margin-bottom: 2.5rem; }
+  .about__kicker { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber-deep); margin: 0 0 1.2rem; }
+  .about__title { font-family: var(--sans); font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.12; letter-spacing: -0.03em; color: var(--ink-1); margin: 0; }
+  @media (max-width: 720px) { .about { padding: 2.5rem 1rem 2rem; } }
+</style>

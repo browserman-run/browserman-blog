@@ -1,8 +1,10 @@
 ---
 title: "China Sunscreen Market Report — April 2026"
 description: "An AI-assisted market report based on 264 Taobao sunscreen search results and 140 cleaned product listings, covering price bands, claim structures, use-case segments, and complaint opportunities."
+lang: en
+translationKey: china-sunscreen-market-report-april-2026
 pubDate: 2026-04-28
-heroImage: ../../assets/og/china-sunscreen-market-report-april-2026.png
+heroImage: ../../../assets/og/china-sunscreen-market-report-april-2026.png
 ---
 
 Chinese sunscreen listings are no longer competing on SPF alone.

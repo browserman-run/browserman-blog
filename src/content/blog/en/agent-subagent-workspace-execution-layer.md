@@ -1,8 +1,10 @@
 ---
 title: "Agent, Subagent, Workspace: what OpenClaw users actually need to understand"
 description: Agent is a role. Subagent is an isolated task instance. Workspace is often shared. The real challenge in multi-agent systems is not spinning up more agents, but coordinating execution.
+lang: en
+translationKey: agent-subagent-workspace-execution-layer
 pubDate: 2026-04-24
-heroImage: ../../assets/og/openclaw-agents-subagents-workspaces-browserman.png
+heroImage: ../../../assets/og/openclaw-agents-subagents-workspaces-browserman.png
 ---
 
 If you spend enough time with OpenClaw or any serious agent setup, you eventually hit the same vocabulary problem.
@@ -73,7 +75,7 @@ They help because they give you:
 
 In other words, the value of subagents is often operational, not mystical.
 
-![Agent versus subagent role and task instance diagram](../../assets/og/agent-vs-subagent.png)
+![Agent versus subagent role and task instance diagram](../../../assets/og/agent-vs-subagent.png)
 
 ## Workspace is often shared, even when context is not
 
@@ -101,7 +103,7 @@ Once you understand that, a lot of strange behavior starts to make sense.
 
 You stop expecting subagents to be mini virtual machines, and start seeing them as structured task containers.
 
-![Shared workspace, isolated context diagram](../../assets/og/shared-workspace-isolated-context.png)
+![Shared workspace, isolated context diagram](../../../assets/og/shared-workspace-isolated-context.png)
 
 ## The hardest part is not spawning more agents
 
@@ -209,7 +211,7 @@ Those are better questions.
 
 They lead to more stable systems.
 
-![Orchestration needs an execution layer diagram](../../assets/og/orchestration-needs-execution-layer.png)
+![Orchestration needs an execution layer diagram](../../../assets/og/orchestration-needs-execution-layer.png)
 
 ## Why this matters for OpenClaw users
 

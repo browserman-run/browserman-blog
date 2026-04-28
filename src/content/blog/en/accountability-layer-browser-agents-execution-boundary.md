@@ -1,8 +1,10 @@
 ---
 title: "The accountability layer for browser agents is the execution boundary"
 description: "Browser agents do not just need better dashboards. Once an agent touches a real logged-in session, accountability has to live at execution time: session scope, task intent, gates, audit logs, and revocation."
+lang: en
+translationKey: accountability-layer-browser-agents-execution-boundary
 pubDate: 2026-04-26
-heroImage: ../../assets/og/accountability-layer-browser-agents-execution-boundary.png
+heroImage: ../../../assets/og/accountability-layer-browser-agents-execution-boundary.png
 ---
 
 Most browser-agent demos ask the same small question:

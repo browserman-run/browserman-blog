@@ -1,6 +1,8 @@
 ---
 title: Launching the BrowserMan blog
 description: Why BrowserMan is splitting the blog into its own Astro project and what will be published here.
+lang: en
+translationKey: launching-the-browserman-blog
 pubDate: 2026-04-22
 ---
 

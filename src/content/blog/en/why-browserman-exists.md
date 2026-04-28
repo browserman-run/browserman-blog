@@ -1,8 +1,10 @@
 ---
 title: Why BrowserMan exists
 description: Local browser tools can access a real browser. Cloud browsers can serve remote agents. BrowserMan exists because real workflows need both.
+lang: en
+translationKey: why-browserman-exists
 pubDate: 2026-04-23
-heroImage: ../../assets/og/why-browserman-exists.png
+heroImage: ../../../assets/og/why-browserman-exists.png
 ---
 
 BrowserMan exists because today's browser tooling stack splits in the wrong place.

@@ -1,8 +1,10 @@
 ---
 title: "What happens when your company inbox gets an AI operator?"
 description: Every company inbox quietly runs part of the business. We connected an OpenClaw agent to a real inbox to see what changes when AI can triage, draft, and send — and where the real risks begin.
+lang: en
+translationKey: cloudflare-agentic-inbox-openclaw-field-notes
 pubDate: 2026-04-24
-heroImage: ../../assets/og/cloudflare-agentic-inbox-openclaw.png
+heroImage: ../../../assets/og/cloudflare-agentic-inbox-openclaw.png
 ---
 
 Every company has an inbox that quietly runs the business.

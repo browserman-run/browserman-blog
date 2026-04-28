@@ -1,0 +1,17 @@
+---
+import type { Lang } from '../lib/i18n';
+
+interface Props {
+  lang?: Lang;
+  translationUrl?: string;
+  class?: string;
+}
+
+const { lang = 'en', translationUrl, class: className = '' } = Astro.props;
+const targetLabel = lang === 'en' ? '中文' : 'English';
+const fallbackUrl = lang === 'en' ? '/zh/' : '/';
+---
+
+<a class:list={['site-nav__lang', className]} href={translationUrl ?? fallbackUrl} hreflang={lang === 'en' ? 'zh' : 'en'}>
+  {targetLabel}
+</a>

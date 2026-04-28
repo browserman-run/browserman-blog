@@ -1,20 +1,35 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import { absoluteUrl, defaultLang, findTranslation, getLocalizedBlogUrl, getSlugFromId } from '../../lib/i18n';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
+	const posts = await getCollection('blog', ({ data }) => data.lang === defaultLang);
 	return posts.map((post) => ({
-		params: { slug: post.id },
+		params: { slug: getSlugFromId(post.id) },
 		props: post,
 	}));
 }
-type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const { Content } = await render(post);
+const posts = await getCollection('blog');
+const slug = getSlugFromId(post.id);
+const zhPost = findTranslation(posts, post, 'zh');
+const enUrl = getLocalizedBlogUrl('en', slug);
+const zhUrl = zhPost ? getLocalizedBlogUrl('zh', getSlugFromId(zhPost.id)) : undefined;
+const alternates = [
+  { lang: 'en' as const, url: absoluteUrl(enUrl) },
+  ...(zhUrl ? [{ lang: 'zh' as const, url: absoluteUrl(zhUrl) }] : []),
+  { lang: 'x-default' as const, url: absoluteUrl(enUrl) },
+];
 ---
 
-<BlogPost {...post.data}>
+<BlogPost
+  {...post.data}
+  canonicalUrl={absoluteUrl(enUrl)}
+  translationUrl={zhUrl}
+  alternates={alternates}
+>
 	<Content />
 </BlogPost>
