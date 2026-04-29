@@ -142,3 +142,21 @@ Possible framing:
 - A browser-agent runtime needs two records: what the agent was allowed to touch, and what it actually touched.
 - “Run the browser in a container” is a good start. “Show me the state the agent left behind” is what makes it usable.
 - Browser-agent safety is not one mechanism. It is isolation before execution, policy at execution, and receipts after execution.
+
+## Addendum: auditable beats undetectable
+
+A later fresh signal from `@Timur_Yessenov` sharpened the positioning: browser MCP is powerful, but the dangerous bit is identity + state. If an agent can drive a logged-in browser, the product needs per-site permissions, screenshots/logs, and a clean replay trail. “Undetectable” is less interesting than auditable.
+
+This is a useful contrast for the article. Some browser-agent messaging emphasizes stealth, bypassing bot checks, or “use the site like a human.” BrowserMan’s stronger category stance should be: the point is not to make agents invisible; the point is to make delegated browser work legible and controllable.
+
+Possible section framing:
+
+- Stealth is a brittle optimization.
+- Auditability is an operating requirement.
+- The valuable browser-agent runtime should help the user answer: who/what acted, in which session, on which site, with what permission, and what evidence exists after the fact?
+
+Additional X hooks:
+
+- “Undetectable” is the wrong north star for browser agents. The useful runtime is auditable.
+- If an agent can drive a logged-in browser, identity and state become the product surface.
+- Browser agents should not aspire to be invisible. They should be scoped, gated, replayable, and revocable.
