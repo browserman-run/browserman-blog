@@ -104,3 +104,41 @@ Potential tags: `ai`, `agents`, `automation`, `security`.
 ## Status
 
 Seed created from 2026-04-29 Social Radar. Strong candidate for a short BrowserMan Blog article if the theme continues or if JQ wants a durable SEO/thought-leadership piece on agent governance for real-browser workflows.
+
+## Addendum: runtime isolation and handoff/resumability
+
+Later 2026-04-29 signals added an important layer: policy is not enough if the browser runtime itself is too porous, and isolation is not enough if the user cannot understand what state the agent left behind.
+
+New evidence:
+
+- `@lupinlin`: agent browser sessions should run in isolated containers with no access to other ports or storage; session isolation should be enforced at the OS level, not just app level.
+- `@m13v_`: isolated environments fix the safety part, but not the resumability part. After the agent uses the computer for 20 minutes and hands back, the user may not know what browser state or files were touched.
+- `@DeepakSilaych`: some MCP/browser-session approaches expose the existing browser profile instead of starting a new DevTools session.
+- `@79yuuki_en`: real browser-agent demos get honest when the agent has to click through auth, weird state, and tiny browser assumptions; login flows, selectors, and state leaks are where expensive bugs appear.
+- `@Adamfg97`: screenshot-heavy Playwright MCP workflows can inflate payloads and corrupt sessions, a practical reminder that browser automation architecture affects reliability, not only capability.
+
+### New section candidate: Isolation fixes safety; receipts fix handoff
+
+Runtime isolation and UI-action policy solve different problems:
+
+- **Isolation** limits what the agent can touch outside the delegated browser/session.
+- **Policy** decides which browser actions are allowed before execution.
+- **Receipts** make the handoff legible after execution.
+
+A safe browser-agent runtime should answer both:
+
+1. What could the agent touch while it was running?
+2. What did the agent actually touch before it handed control back?
+
+Without isolation, the browser session can become an overly broad capability. Without receipts, even an isolated session becomes hard to trust because the user cannot reconstruct state changes.
+
+Possible framing:
+
+> Isolation is the seatbelt. The receipt is the dashboard. You need both before browser agents can drive real workflows.
+
+### Additional X hooks
+
+- Isolated browser sessions fix one problem: blast radius. They do not fix handoff. After the agent gives control back, the user still needs to know what changed, what failed, and what state is safe to continue from.
+- A browser-agent runtime needs two records: what the agent was allowed to touch, and what it actually touched.
+- “Run the browser in a container” is a good start. “Show me the state the agent left behind” is what makes it usable.
+- Browser-agent safety is not one mechanism. It is isolation before execution, policy at execution, and receipts after execution.
