@@ -15,7 +15,7 @@ Four patterns are emerging:
 3. **Local attach / existing Chrome** — use the user’s current browser state on the same machine.
 4. **Delegated real-browser access** — agents can run elsewhere while the user’s real Chrome and cookies stay local, mediated by scope, gates, audit, and revoke.
 
-The category distinction is not “can the agent log in?” It is “where does the authority live, and how is it delegated?”
+The category distinction is not “can the agent log in?” It is “where does the authority live, how is it delegated, and what identity/policy/audit trail follows the agent?”
 
 ## Target reader
 
@@ -29,7 +29,7 @@ The category distinction is not “can the agent log in?” It is “where does 
 
 A logged-in browser session contains authority: SaaS dashboards, inboxes, CRMs, admin panels, publishing tools, customer data, billing pages, and social accounts.
 
-That is why agents want it. It is also why the permission model matters.
+That is why agents want it. It is also why the permission model matters. The practical buyer pain is not “the model cannot reason.” It is auth, scopes, permissions, and proving which agent acted under whose policy.
 
 ### 2. Pattern one: cloud browser + cookie sync
 
@@ -126,6 +126,7 @@ Positioning line:
 
 - Does the agent need a real existing login, or can it use a clean / isolated browser?
 - Is the goal isolation from the user’s main profile, or controlled access to that real profile?
+- Which identity or policy is the agent acting under?
 - Does the agent need to run in the cloud / from another machine?
 - Are cookies exported, copied, synced, or kept inside the user’s browser?
 - Can access be scoped by task/site/action?
@@ -161,4 +162,7 @@ BrowserMan’s lane is the place between them:
 - Keith/agentic browser isolation comment: `https://x.com/gnukeith/status/2024557539279384950`
 - Will Codex auth bottleneck: `https://x.com/MachinesBeFree/status/2025654575269560340`
 - abundand agent auth / OAuth assumes browser: `https://x.com/abundand/status/2021613448329609534`
+- Timur Yessenov identity+state/per-site permissions/replay trail: `https://x.com/Timur_Yessenov/status/2049401658485203012`
+- Michael Ulin personal-agent auth/permissions bottleneck: `https://x.com/michaelulin/status/2040051696273924203`
+- MOI agents carry credentials not identity: `https://x.com/MOI_Tech/status/2042281383587168278`
 - BrowserMan product facts: `memory/browserman-product-facts.md`
