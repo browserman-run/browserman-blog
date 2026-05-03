@@ -8,11 +8,12 @@ Source: X/social radar signals from 2026-05-03 around `/cookie-sync`, local Chro
 
 For browser agents, the hard part is no longer just giving the model a logged-in browser. The hard part is deciding how authority is delegated.
 
-Three patterns are emerging:
+Four patterns are emerging:
 
 1. **Cloud browser + cookie sync** — remote execution with copied/imported session material.
-2. **Local attach / existing Chrome** — use the user’s current browser state on the same machine.
-3. **Delegated real-browser access** — agents can run elsewhere while the user’s real Chrome and cookies stay local, mediated by scope, gates, audit, and revoke.
+2. **Isolated agent browser/profile** — safer automation in a separate browser profile with no main-session cookies.
+3. **Local attach / existing Chrome** — use the user’s current browser state on the same machine.
+4. **Delegated real-browser access** — agents can run elsewhere while the user’s real Chrome and cookies stay local, mediated by scope, gates, audit, and revoke.
 
 The category distinction is not “can the agent log in?” It is “where does the authority live, and how is it delegated?”
 
@@ -50,7 +51,27 @@ Positioning line:
 
 > Cookie sync solves remote execution by exporting the jar.
 
-### 3. Pattern two: local attach / existing Chrome
+### 3. Pattern two: isolated agent browser/profile
+
+Signals: Brave Nightly, Keith/agentic browsing security comments, isolated Playwright/MCP profiles.
+
+What it solves:
+
+- protects the user's main cookies, logins, and browsing data;
+- reduces prompt-injection blast radius;
+- gives agents a clean automation surface.
+
+Tradeoff:
+
+- it is not the user's real logged-in work surface;
+- authenticated workflows still need API/OAuth/login/cookie-sync/manual login;
+- safer isolation can remove the very session state that made the browser useful.
+
+Positioning line:
+
+> Isolated profiles protect cookies. They do not provide delegated access to the user’s real work surface.
+
+### 4. Pattern three: local attach / existing Chrome
 
 Signals: Chrome DevTools MCP, bb-browser, Tandem Browser, OpenClaw live Chrome attach, local-vs-cloud browser posts.
 
@@ -70,7 +91,7 @@ Positioning line:
 
 > Existing Chrome attach solves login. It does not automatically solve delegation.
 
-### 4. Pattern three: delegated real-browser access
+### 5. Pattern four: delegated real-browser access
 
 BrowserMan angle:
 
@@ -90,20 +111,21 @@ Positioning line:
 
 > Delegate browser authority without handing over credentials.
 
-### 5. The comparison table
+### 6. The comparison table
 
-| Question | Cloud browser + cookie sync | Local attach / existing Chrome | Delegated real-browser access |
-| --- | --- | --- | --- |
-| Uses real logged-in state? | Yes, via copied/imported cookies | Yes, current browser/profile | Yes, current browser/session |
-| Agent can run elsewhere? | Yes | Usually no / depends on setup | Yes |
-| Cookies stay local? | No, not if synced/exported | Yes | Yes |
-| Delegation is explicit? | Depends on product | Often coarse | Core product primitive |
-| Revocation model | Revoke cloud session / token | Stop local process/access | Revoke delegated access |
-| Best for | scalable remote browser infra | local/private workflows and development | controlled access to a user’s real browser authority |
+| Question | Cloud browser + cookie sync | Isolated agent browser/profile | Local attach / existing Chrome | Delegated real-browser access |
+| --- | --- | --- | --- | --- |
+| Uses real logged-in state? | Yes, via copied/imported cookies | No / only separate profile state | Yes, current browser/profile | Yes, current browser/session |
+| Agent can run elsewhere? | Yes | Usually local or managed runtime | Usually no / depends on setup | Yes |
+| Cookies stay local? | No, not if synced/exported | Main cookies stay protected because they are absent | Yes | Yes |
+| Delegation is explicit? | Depends on product | Isolation is explicit; delegation may be limited | Often coarse | Core product primitive |
+| Revocation model | Revoke cloud session / token | Delete/stop isolated profile/session | Stop local process/access | Revoke delegated access |
+| Best for | scalable remote browser infra | safe unauthenticated/low-auth browsing and prompt-injection containment | local/private workflows and development | controlled access to a user’s real browser authority |
 
-### 6. What developers should ask before choosing
+### 7. What developers should ask before choosing
 
-- Does the agent need a real existing login, or can it use a clean browser?
+- Does the agent need a real existing login, or can it use a clean / isolated browser?
+- Is the goal isolation from the user’s main profile, or controlled access to that real profile?
 - Does the agent need to run in the cloud / from another machine?
 - Are cookies exported, copied, synced, or kept inside the user’s browser?
 - Can access be scoped by task/site/action?
@@ -111,9 +133,9 @@ Positioning line:
 - Is there an audit log or receipt of what changed?
 - Can the user revoke the delegation in one click?
 
-### 7. BrowserMan closing angle
+### 8. BrowserMan closing angle
 
-BrowserMan should not claim every workflow should use delegated local Chrome. Cloud browsers are excellent for scale and clean automation. Local attach is great for developer workflows.
+BrowserMan should not claim every workflow should use delegated local Chrome. Cloud browsers are excellent for scale and clean automation. Isolated profiles are excellent for reducing the blast radius of browsing. Local attach is great for developer workflows.
 
 BrowserMan’s lane is the place between them:
 
@@ -135,4 +157,8 @@ BrowserMan’s lane is the place between them:
 - yan5xu bb-browser real Chrome extension: `https://x.com/yan5xu/status/2033227436813685211`
 - Robin Waslander Tandem Browser same tabs/cookies/sessions: `https://x.com/Robin_waslander/status/2046206069144223971`
 - Arnon local/authenticated trust-boundary note: `https://x.com/particularltd/status/2033613251729039616`
+- Brave Nightly isolated profile approach: `https://x.com/BraveNightly/status/2019834139114107071`
+- Keith/agentic browser isolation comment: `https://x.com/gnukeith/status/2024557539279384950`
+- Will Codex auth bottleneck: `https://x.com/MachinesBeFree/status/2025654575269560340`
+- abundand agent auth / OAuth assumes browser: `https://x.com/abundand/status/2021613448329609534`
 - BrowserMan product facts: `memory/browserman-product-facts.md`
