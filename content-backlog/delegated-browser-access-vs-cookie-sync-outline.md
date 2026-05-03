@@ -15,7 +15,7 @@ Four patterns are emerging:
 3. **Local attach / existing Chrome** — use the user’s current browser state on the same machine.
 4. **Delegated real-browser access** — agents can run elsewhere while the user’s real Chrome and cookies stay local, mediated by scope, gates, audit, and revoke.
 
-The category distinction is not “can the agent log in?” It is “where does the authority live, how is it delegated, and what identity/policy/audit trail follows the agent?”
+The category distinction is not “can the agent log in?” It is “where does the authority live, how is it delegated, what identity/policy/audit trail follows the agent, and how are agents isolated from each other?”
 
 ## Target reader
 
@@ -29,7 +29,7 @@ The category distinction is not “can the agent log in?” It is “where does 
 
 A logged-in browser session contains authority: SaaS dashboards, inboxes, CRMs, admin panels, publishing tools, customer data, billing pages, and social accounts.
 
-That is why agents want it. It is also why the permission model matters. The practical buyer pain is not “the model cannot reason.” It is auth, scopes, permissions, and proving which agent acted under whose policy.
+That is why agents want it. It is also why the permission model matters. The practical buyer pain is not “the model cannot reason.” It is auth, scopes, permissions, isolation between agents, and proving which agent acted under whose policy.
 
 ### 2. Pattern one: cloud browser + cookie sync
 
@@ -127,6 +127,8 @@ Positioning line:
 - Does the agent need a real existing login, or can it use a clean / isolated browser?
 - Is the goal isolation from the user’s main profile, or controlled access to that real profile?
 - Which identity or policy is the agent acting under?
+- Are multiple agents isolated by browser window/profile, file scope, and tool access?
+- Can delegation chains be traced back to a human?
 - Does the agent need to run in the cloud / from another machine?
 - Are cookies exported, copied, synced, or kept inside the user’s browser?
 - Can access be scoped by task/site/action?
@@ -165,4 +167,8 @@ BrowserMan’s lane is the place between them:
 - Timur Yessenov identity+state/per-site permissions/replay trail: `https://x.com/Timur_Yessenov/status/2049401658485203012`
 - Michael Ulin personal-agent auth/permissions bottleneck: `https://x.com/michaelulin/status/2040051696273924203`
 - MOI agents carry credentials not identity: `https://x.com/MOI_Tech/status/2042281383587168278`
+- Chen Avnery identity isolation / own browser window / file scope / tool access: `https://x.com/MindTheGapMTG/status/2036424988970865080`
+- AgentsID HMAC tokens / deny-first permissions / delegation chains / tamper-evident audit log: `https://x.com/agents_id/status/2037600312286982303`
+- Pawel Huryn managed agent config with MCP servers and permission policies: `https://x.com/PawelHuryn/status/2042214475126669787`
+- MoltenRockAI local agent filesystem/browser control security model: `https://x.com/MoltenRockAI/status/2048010295964991839`
 - BrowserMan product facts: `memory/browserman-product-facts.md`
