@@ -21,6 +21,10 @@ The production question is harder:
 
 That is where browser agents become operationally interesting. It is also where they become risky.
 
+A recent [DEV.to post about keeping real Chrome logins alive across Playwright restarts](https://dev.to/zoetaka38/persisting-your-real-chrome-login-across-playwright-restarts-on-macos-126a) made this concrete. The clicking was not the hard part. The hard part was preserving authenticated Chrome state across a publishing workflow that touched Zenn, DEV.to, note, Substack, X, LinkedIn, and Google Search Console.
+
+That is a useful signal: real logged-in browser state is already workflow infrastructure. Once an agent or automation depends on that state, the question changes from browser control to delegated authority.
+
 ## A browser session is delegated authority
 
 A real browser session is not just a nicer runtime for automation.
@@ -46,6 +50,8 @@ That distinction matters.
 A dashboard can tell you what happened.
 
 That is useful, but it is late.
+
+The broader agent tooling ecosystem is already moving toward governance primitives: tool schemas as contracts, traces around tool calls, isolated servers, allowlists, delegated consent, audit logs, and offboarding. Browser sessions need the same seriousness, but at the authority layer.
 
 For browser agents, accountability has to sit closer to the execution boundary. The boundary is the moment where the agent is about to use a real session to do something on behalf of the user or company.
 
