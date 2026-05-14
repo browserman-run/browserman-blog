@@ -110,3 +110,18 @@ Additional signal from X discovery:
 Implication for the article:
 
 Approval gates should not be framed only as safety brakes. They are also workflow infrastructure. A good delegated browser workflow needs to know when to pause, who can approve, how fast they can approve, and what context/receipt they need to make that decision.
+
+## Addendum — least privilege is becoming the shared language
+
+Date: 2026-05-14 14:36 UTC
+
+Additional signal from X discovery:
+
+- @BhawikTech: once an agent can act, treat it like a privileged operator, not a productivity tool; the control model looks like PAM: least privilege, just-in-time access, credential isolation, session oversight, strong approvals.
+- @derrick_dao: safe execution surface / least-privilege access control may be more defensible than the model itself.
+- @kpolley / Perplexity Computer: public positioning around granular least-privilege access control from connectors down to runtime.
+- Ongoing production-deletion posts keep repeating the same root cause: broad tools, over-scoped tokens, and no blast-radius boundary.
+
+Implication for the article:
+
+The write boundary is not only a BrowserMan claim; it is becoming shared category language across agent security, computer-use, and browser-extension agents. BrowserMan should map that language specifically to real browser sessions: per-site scope, read/write separation, approval before high-value actions, and receipts after execution.
