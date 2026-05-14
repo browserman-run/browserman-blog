@@ -96,3 +96,17 @@ ai, agents, automation, security
 - Add concrete BrowserMan workflow example or screenshot.
 - Generate 16:9 hero image under `src/assets/og/`.
 - Add canonical URL if reposting to DEV.to.
+
+## Addendum — handoff needs to be designed before users hit the edge
+
+Date: 2026-05-14 12:17 UTC
+
+Additional signal from X discovery:
+
+- @Faysalfateh1: the real product is not the agent; it is knowing exactly when the agent needs a human and designing that handoff before the first real user finds it the hard way.
+- @guilippert_v4: mobile approval can collapse approval latency; many agent workflows die because the human can only unblock from a laptop.
+- @robrichardson_: practical browser automation at work is vendor forms, reports from no-API portals, and legacy CRMs.
+
+Implication for the article:
+
+Approval gates should not be framed only as safety brakes. They are also workflow infrastructure. A good delegated browser workflow needs to know when to pause, who can approve, how fast they can approve, and what context/receipt they need to make that decision.
