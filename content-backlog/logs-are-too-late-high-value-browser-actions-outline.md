@@ -139,3 +139,17 @@ Additional signal from X discovery:
 Implication for the article:
 
 Preflight gates should not be opaque blocks. A good gate returns a structured denial: scope, rule, reason, and possible handoff path. For browser agents, that means the agent can continue safely: ask for approval, switch to read-only mode, collect evidence, or stop.
+
+## Addendum — receipts need tamper-evident identity, but still come after gates
+
+Date: 2026-05-14 16:19 UTC
+
+Additional signal from X discovery:
+
+- @vauban_tech: a log file can be edited; the stronger version is a tamper-evident chain back to a fixed agent identity.
+- @jonashernlund: enterprise buyers care about signed logs for SOC2/SOX and every action an agent took.
+- Related prior WSSignal framing: signed receipts should let you replay who asked, what was decided, and why.
+
+Implication for the article:
+
+Receipts are not the gate, but they make the gate auditable. For high-value browser actions, the stack should be: preflight policy, approval/handoff when required, execution, then tamper-evident receipt tied to actor identity/session/context. BrowserMan should avoid sounding like logs alone are enough; logs prove and explain, gates prevent.
