@@ -125,3 +125,17 @@ Additional signal from X discovery:
 Implication for the article:
 
 The write boundary is not only a BrowserMan claim; it is becoming shared category language across agent security, computer-use, and browser-extension agents. BrowserMan should map that language specifically to real browser sessions: per-site scope, read/write separation, approval before high-value actions, and receipts after execution.
+
+## Addendum — denied actions should teach the boundary
+
+Date: 2026-05-14 15:44 UTC
+
+Additional signal from X discovery:
+
+- @WSSignal: policy enforcement at decision time should tell the agent it asked for something outside scope, why it was denied, and which rule stopped it. This lets agents learn boundaries instead of treating denials as broken tools and routing around them.
+- @jonashernlund: enterprise buyers also need signed logs for SOC2/SOX, but this is downstream of the execution boundary.
+- @mslipper: MCP inspection/policy enforcement and tool whitelisting are being framed as production control surfaces.
+
+Implication for the article:
+
+Preflight gates should not be opaque blocks. A good gate returns a structured denial: scope, rule, reason, and possible handoff path. For browser agents, that means the agent can continue safely: ask for approval, switch to read-only mode, collect evidence, or stop.
