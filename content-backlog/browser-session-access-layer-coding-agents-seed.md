@@ -184,3 +184,33 @@ Possible X seed:
 
 > “dangerously-skip-permissions” is funny because it says the quiet part out loud. The product problem is not removing friction. It is deciding where friction belongs.
 
+
+## 2026-05-15 signal update: prove-before-click and approval thresholds
+
+Two more permission-boundary signals:
+
+- `@xtaxrich`: “A smart pointer is not a cursor upgrade. It is a permission boundary: what can the agent prove before it clicks?”
+- `@Tidianez`: refund failure story where an agent processes a $4,500 refund with no policy, no human in the loop, and no “anything over $500 needs approval” rule.
+
+Why this improves the article:
+
+- It moves the argument from abstract safety to concrete product design.
+- The key question becomes: what evidence must the agent provide before an irreversible or high-risk click?
+- Approval gates should be thresholded by action type and blast radius, not sprinkled everywhere.
+
+Possible section title:
+
+### Ask what the agent can prove before it clicks
+
+Examples:
+
+- Can it prove the refund is below the approval threshold?
+- Can it show the draft before publishing?
+- Can it identify the exact account/order/page it is about to change?
+- Can it distinguish reversible edits from irreversible submissions?
+- Can it produce a receipt after the action?
+
+BrowserMan tie-in:
+
+A real browser session is powerful because it carries authority. The safe design is not “block agents from acting”; it is “make the browser action legible before and after execution.”
+
