@@ -23,6 +23,8 @@ APIs are incomplete. Internal tools are inconsistent. OAuth scopes are often too
 
 A logged-in browser session can already do the thing. That is why it is useful. It is also why it is risky.
 
+The useful browser bridge keeps auth and session state out of the prompt while still letting the agent work. That separation is the point: the agent gets a tool boundary, not a pasted credential bundle.
+
 Once an agent can use a real browser session, it is not just controlling pixels. It is borrowing authority: the user’s account, the company’s account, the brand’s account, the customer support account, the payment dashboard, the CMS, the CRM.
 
 That is the part most demos skip.
