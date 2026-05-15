@@ -160,3 +160,27 @@ Adjacent corroborating signal from `@bettercallsalva`:
 - Integrated browser in VS Code / Cursor context “closes a real feedback loop” for component work because the agent can inspect localhost in the same context as edits.
 - This supports a second angle: browser surface matters not only for trust, but for feedback-loop quality.
 
+
+## 2026-05-15 signal update: permission flags as product messaging
+
+New signal from `@danmartuszewski` around Claude Code/manual skills using `--dangerously-skip-permissions`:
+
+- Developers are actively working around permission friction in coding-agent workflows.
+- The name `dangerously-skip-permissions` is accidentally excellent product language: it tells the truth that speed and authority are being traded against safety.
+- BrowserMan should not shame this behavior; it should frame the missing middle: agents need enough authority to work, but high-risk browser/account actions need visible boundaries, pauses, and revoke.
+
+Possible angle for the trust-sensitive agents article:
+
+> Every serious agent product eventually has to answer the same question: when does convenience become delegated authority?
+
+Tie-in examples:
+
+- `--dangerously-skip-permissions` for terminal/coding actions.
+- Browser extension surfaces for job-application submits.
+- Real Chrome sessions for authenticated dashboards.
+- Support/CRM/CMS workflows where the action is under a real account.
+
+Possible X seed:
+
+> “dangerously-skip-permissions” is funny because it says the quiet part out loud. The product problem is not removing friction. It is deciding where friction belongs.
+
