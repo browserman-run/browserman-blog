@@ -214,3 +214,29 @@ BrowserMan tie-in:
 
 A real browser session is powerful because it carries authority. The safe design is not “block agents from acting”; it is “make the browser action legible before and after execution.”
 
+
+## 2026-05-15 signal seed: recovery surfaces for browser agents
+
+After publishing the visible-friction article, a distinct follow-up theme is emerging: **browser agents need recovery surfaces, not just browser access**.
+
+Signals:
+
+- `@jjfleagle`: Playwright + browser context gives agents structure, but the gap is recovery when selectors drift or auth/session state changes. Agents need observable state.
+- `@nsxdavid`: the trap with browser-agent tooling is thinking click/fill/screenshot is the hard part; the real failure mode is page state drift where the agent still thinks the last command means what it meant seconds ago.
+- Prior related signal: Browser DevTools MCP / CDP attach to a running Chrome instance, no need to launch a new browser; existing browser state is useful, but recovery still needs legible state.
+
+Possible thesis:
+
+> Browser access is table stakes. The production layer is recovery: observable page state, auth/session continuity, and a way to recover when the UI lies, lags, or drifts.
+
+Possible outline:
+
+1. Browser agents fail less from lack of clicking and more from stale assumptions.
+2. Selectors drift, auth expires, page state changes, modals appear, async actions lag.
+3. A useful browser surface gives the agent structured context and a recovery path, not just screenshots.
+4. Real Chrome sessions help with continuity, but they also raise the need for legible state and scoped authority.
+5. BrowserMan angle: delegated real-session access should pair with observable state, gates, and receipts.
+
+Possible X hook:
+
+> The hard part is not giving an agent a browser. It is giving the agent enough observable state to recover when the page no longer means what it meant three seconds ago.
