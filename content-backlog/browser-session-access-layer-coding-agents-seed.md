@@ -263,3 +263,24 @@ Possible sections:
 Possible X hook:
 
 > Browser-agent tooling earns trust when the page stops cooperating: auth walls, selector drift, native dialogs, slow networks, and partial submits. The product is not the click loop. It is the recovery surface.
+
+## 2026-05-15 signal update: agentic commerce, checkout authority, and human handoff
+
+New discovery cluster around calendar/travel/payment agents:
+
+- Calendar/travel agents are being framed as “book travel and pay for hotel without a confirmation button.” This is precisely where visible-friction framing matters: the booking workflow combines identity, calendar state, money, cancellation rules, and reputation.
+- Agentic commerce/Stripe/AP2 chatter focuses on agents spending money or completing checkout. BrowserMan should avoid crypto/payment-protocol hype and instead frame browser checkout as delegated authority: what can the agent compare, reserve, or draft versus what needs explicit confirmation?
+- Human handoff query repeated: scoped tabs, action logs, page state, and clean handoff when a site gets weird.
+
+Possible future angle:
+
+> The checkout button is not just another browser click. It is a transfer of authority.
+
+Use cases:
+
+- travel booking: search/compare freely, hold or book only with confirmation;
+- hotel/flight checkout: show exact merchant, cancellation terms, total cost, payment method, and identity before submit;
+- calendar scheduling: low-risk until external invites and travel/payment commitments enter the loop;
+- support/order workflows: lookup and draft freely, refund/change/commit behind thresholds.
+
+Keep this separate from crypto-agent-wallet discourse. BrowserMan’s stronger lane is authenticated browser handoff and proof-before-commit, not “agents should spend autonomously.”
