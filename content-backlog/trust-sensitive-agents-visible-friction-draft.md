@@ -132,7 +132,7 @@ After the action, the agent should leave behind enough context for a human or an
 
 For trust-sensitive workflows, “the agent says it did it” is not a receipt.
 
-A receipt is browser state, tool calls, before/after context, policy decisions, and artifacts that line up.
+A receipt is browser state, tool calls, before/after context, policy decisions, and artifacts that line up. It should be replayable enough that someone can reconstruct the action months later: which tool was called, on what input, under what authority, and what changed.
 
 ## The BrowserMan angle: delegated browser authority
 
