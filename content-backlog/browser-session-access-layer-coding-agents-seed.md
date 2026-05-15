@@ -240,3 +240,26 @@ Possible outline:
 Possible X hook:
 
 > The hard part is not giving an agent a browser. It is giving the agent enough observable state to recover when the page no longer means what it meant three seconds ago.
+
+## 2026-05-15 signal update: ugly-state handling as the recovery test
+
+Additional recovery-surface corroboration:
+
+- `@EloPhanto`: first test for browser-agent tooling is “ugly-state handling”: selector drift, auth walls, native dialogs, slow network, and partial form submits. Browser-agent tooling earns trust when the page does not cooperate.
+- `@zazmic_inc`: most browser-agent demos fail because of auth drift and selector instability; explicit orchestration/control surface makes failures easier to trace.
+
+This sharpens the recovery article angle:
+
+> The browser-agent demo succeeds on the happy path. Production trust is earned in ugly state: auth walls, native dialogs, slow network, partial submits, and selector drift.
+
+Possible sections:
+
+1. Happy-path clicking is easy to demo.
+2. Ugly state is where trust is earned.
+3. Recovery surfaces need observable state, not just screenshots.
+4. Real Chrome session continuity avoids blank-context restarts, but it also needs authority boundaries.
+5. BrowserMan angle: delegated real-session access should make state and recovery legible.
+
+Possible X hook:
+
+> Browser-agent tooling earns trust when the page stops cooperating: auth walls, selector drift, native dialogs, slow networks, and partial submits. The product is not the click loop. It is the recovery surface.
