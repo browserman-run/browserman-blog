@@ -125,3 +125,38 @@ Possible X bridge post, if not too close to recent posts:
 >  
 > The click loop is becoming table stakes. The harder question is which browser session the agent can use, and what it is allowed to do once it gets there.
 
+
+## 2026-05-15 signal update: trust-sensitive agents and visible browser surfaces
+
+Additional signal from `@aayushcb`:
+
+> Built a server-side submit pipeline for our job-app agent. Queue, workers, four background tasks. Ripped it all out last week. Kept the browser extension. We realized trust-sensitive agents need a surface the user can interrupt.
+
+Why it matters:
+
+- This is buyer-language, not vendor language.
+- The issue is not whether an agent can submit a form; it is whether the user can see and interrupt the submission path.
+- Hidden worker queues are fine for low-risk background work. They become uncomfortable when the action happens under the user's name.
+- BrowserMan should use “trust-sensitive browser work” as a recurring wedge: job applications, publishing, checkout, account changes, CRM updates, support replies, and anything that changes a real account.
+
+Updated article angle:
+
+A good durable post may be: **Trust-sensitive agents need a visible browser surface**.
+
+Possible outline:
+
+1. Background workers are good for safe, deterministic tasks.
+2. Trust-sensitive tasks are different because they use the user's account, reputation, money, or customer data.
+3. The user needs a visible surface and interruption point before submit/publish/pay/delete/send.
+4. The browser is not just an execution environment; it is the trust boundary.
+5. BrowserMan's role: real Chrome session, delegated access, local cookies, visible/auditable actions, and user-controlled revoke.
+
+Possible X hook:
+
+> Background workers are great until the agent is about to submit something under your name. Trust-sensitive browser work needs a surface the user can see, pause, and take back.
+
+Adjacent corroborating signal from `@bettercallsalva`:
+
+- Integrated browser in VS Code / Cursor context “closes a real feedback loop” for component work because the agent can inspect localhost in the same context as edits.
+- This supports a second angle: browser surface matters not only for trust, but for feedback-loop quality.
+
