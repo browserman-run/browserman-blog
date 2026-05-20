@@ -2,6 +2,7 @@
 title: Screenshots Are Not Browser State
 description: Why coding agents need real Chrome loops — and why logged-in browser work needs delegated authority, approval lines, and receipts.
 pubDate: 2026-05-19
+heroImage: ../../../assets/og/screenshots-are-not-browser-state.png
 author: Eli
 tags:
   - AI Agents
