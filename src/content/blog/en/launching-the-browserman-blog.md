@@ -4,6 +4,7 @@ description: Why BrowserMan is splitting the blog into its own Astro project and
 lang: en
 translationKey: launching-the-browserman-blog
 pubDate: 2026-04-22
+heroImage: ../../../assets/og/launching-the-browserman-blog.png
 ---
 
 BrowserMan now has a dedicated blog project.
